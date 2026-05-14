@@ -1,0 +1,285 @@
+﻿@model IEnumerable<SistemaRRHH.Controllers.EmpleadoViewModel>
+
+@{
+	ViewBag.Title = "Empleados";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gestión de Empleados</h2>
+
+<div class="row">
+	<div class="col-md-8">
+		<p>
+			@Html.ActionLink("Crear Nuevo Empleado", "Create", null, new { @class = "btn btn-primary" })
+		</p>
+	</div>
+	<div class="col-md-4">
+		<div class="input-group">
+			<input type="text" id="busquedaRapida" class="form-control" placeholder="Buscar por nombre, email o teléfono..." />
+			<span class="input-group-text"><i class="fas fa-search"></i></span>
+		</div>
+	</div>
+</div>
+
+<!-- Tarjetas de estadísticas -->
+<div class="row mb-3" id="estadisticasEmpleados">
+	<div class="col-md-4">
+		<div class="card text-white bg-primary">
+			<div class="card-body">
+				<h5 class="card-title">Total Empleados</h5>
+				<p class="card-text display-4" id="totalEmpleados">@ViewBag.TotalEmpleados</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card text-white bg-success">
+			<div class="card-body">
+				<h5 class="card-title">Empleados Activos</h5>
+				<p class="card-text display-4" id="totalActivos">@ViewBag.TotalActivos</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card text-white bg-info">
+			<div class="card-body">
+				<h5 class="card-title">Salario Promedio</h5>
+				<p class="card-text display-4" id="salarioPromedio">$@ViewBag.SalarioPromedio.ToString("N0")</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Filtros -->
+<div class="card mb-3">
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-4">
+				<label>Filtrar por Cargo</label>
+				@Html.DropDownList("cargoId", (SelectList)ViewBag.CargosList, "Todos los cargos", new { @class = "form-control", id = "cargoFiltro" })
+			</div>
+			<div class="col-md-4">
+				<label>&nbsp;</label>
+				<button id="btnFiltrar" class="btn btn-primary form-control">
+					<i class="fas fa-search"></i> Aplicar Filtros
+				</button>
+			</div>
+			<div class="col-md-4">
+				<label>&nbsp;</label>
+				<button id="btnEstadisticas" class="btn btn-outline-dark form-control">
+					<i class="fas fa-chart-bar"></i> Estadísticas por Depto
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Tabla de empleados -->
+<div id="tablaEmpleadosContainer">
+	<table class="table table-striped table-bordered" id="tablaEmpleados">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre Completo</th>
+				<th>Teléfono</th>
+				<th>Email</th>
+				<th>Cargo</th>
+				<th>Salario Actual</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr id="empleado-@item.EmpleadoID">
+					<td>
+						@item.EmpleadoID
+					</td>
+					<td>
+						@item.NombreCompleto
+					</td>
+					<td>
+						@item.Telefono
+					</td>
+					<td>
+						@item.Email
+				</td>
+				<td>
+					@item.NombreCargo
+			</td>
+			<td class="text-end">
+				$@(item.SalarioActual?.ToString("N2") ?? "0.00")
+			</td>
+			<td>
+				<button class="btn btn-info btn-sm btn-detalle" data-id="@item.EmpleadoID" data-empleado="@item.NombreCompleto">
+					<i class="fas fa-eye"></i> Detalle
+				</button>
+				@Html.ActionLink("Editar", "Edit", new { id = item.EmpleadoID }, new { @class = "btn btn-warning btn-sm" })
+				@Html.ActionLink("Eliminar", "Delete", new { id = item.EmpleadoID }, new { @class = "btn btn-danger btn-sm" })
+			</td>
+		</tr>
+	}
+		</tbody>
+	</table>
+</div>
+
+<!-- Modal para mostrar detalles vía AJAX -->
+<div class="modal fade" id="detalleModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-info text-white">
+				<h5 class="modal-title">Detalles del Empleado</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body" id="detalleModalBody">
+				<div class="text-center">
+					<i class="fas fa-spinner fa-spin fa-2x"></i> Cargando...
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal para estadísticas -->
+<div class="modal fade" id="estadisticasModal" tabindex="-1">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header bg-dark text-white">
+				<h5 class="modal-title">Estadísticas por Departamento</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body" id="estadisticasModalBody">
+				<div class="text-center">
+					<i class="fas fa-spinner fa-spin fa-2x"></i> Cargando estadísticas...
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+	<script>
+        $(document).ready(function() {
+            // Búsqueda rápida en tiempo real (filtro local)
+            $('#busquedaRapida').on('keyup', function() {
+                var termino = $(this).val().toLowerCase();
+
+                $('#tablaEmpleados tbody tr').each(function() {
+                    var nombre = $(this).find('td:eq(1)').text().toLowerCase();
+                    var email = $(this).find('td:eq(3)').text().toLowerCase();
+                    var telefono = $(this).find('td:eq(2)').text().toLowerCase();
+
+                    if (termino === '' || nombre.indexOf(termino) > -1 || email.indexOf(termino) > -1 || telefono.indexOf(termino) > -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+            // AJAX: Cargar detalles del empleado
+            function cargarDetalleAjax(id, nombre) {
+                $('#detalleModal').modal('show');
+                $('#detalleModalBody').html('<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i> Cargando detalles de ' + nombre + '...</div>');
+
+                $.ajax({
+                    url: '@Url.Action("GetDetalleEmpleado", "Empleados")',
+                    type: 'GET',
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.error) {
+                            $('#detalleModalBody').html('<div class="alert alert-danger">' + data.error + '</div>');
+                        } else {
+                            var html = '<div class="card">' +
+                                '<div class="card-header bg-light"><strong>' + data.NombreCompleto + '</strong></div>' +
+                                '<div class="card-body">' +
+                                '<div class="row">' +
+                                '<div class="col-md-6"><strong>Email:</strong> ' + (data.Email || 'N/A') + '</div>' +
+                                '<div class="col-md-6"><strong>Teléfono:</strong> ' + (data.Telefono || 'N/A') + '</div>' +
+                                '<div class="col-md-12 mt-2"><strong>Dirección:</strong> ' + (data.Direccion || 'N/A') + '</div>' +
+                                '<div class="col-md-6 mt-2"><strong>Cargo:</strong> ' + (data.Cargo || 'N/A') + '</div>' +
+                                '<div class="col-md-6 mt-2"><strong>Fecha Ingreso:</strong> ' + (data.FechaIngreso || 'N/A') + '</div>' +
+                                '<div class="col-md-6 mt-2"><strong>Salario Actual:</strong> $' + (parseFloat(data.SalarioActual) || 0).toLocaleString('es-SV', { minimumFractionDigits: 2 }) + '</div>' +
+                                '</div></div></div>';
+                            $('#detalleModalBody').html(html);
+                        }
+                    },
+                    error: function() {
+                        $('#detalleModalBody').html('<div class="alert alert-danger">Error al cargar detalles del empleado</div>');
+                    }
+                });
+            }
+
+            // Evento para botones de detalle
+            $('.btn-detalle').click(function() {
+                var id = $(this).data('id');
+                var nombre = $(this).data('empleado');
+                cargarDetalleAjax(id, nombre);
+            });
+
+            // Filtrar por cargo (recargar página con el filtro)
+            $('#btnFiltrar').click(function() {
+                var cargoId = $('#cargoFiltro').val();
+                window.location.href = '@Url.Action("Index", "Empleados")?cargoId=' + cargoId;
+            });
+
+            // AJAX: Cargar estadísticas por departamento (LINQ)
+            $('#btnEstadisticas').click(function() {
+                $('#estadisticasModal').modal('show');
+                $('#estadisticasModalBody').html('<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i> Cargando estadísticas...</div>');
+
+                $.ajax({
+                    url: '@Url.Action("GetEstadisticasPorDepartamento", "Empleados")',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.length === 0) {
+                            $('#estadisticasModalBody').html('<div class="alert alert-warning">No hay datos disponibles</div>');
+                            return;
+                        }
+
+                        var html = '<table class="table table-bordered">' +
+                            '<thead class="table-dark">' +
+                            '<tr><th>Departamento</th><th>Cantidad</th><th>Salario Promedio</th><th>Antigüedad Promedio (años)</th></tr>' +
+                            '</thead><tbody>';
+
+                        $.each(data, function(i, depto) {
+                            html += '<tr>' +
+                                '<td>' + depto.Departamento + '</td>' +
+                                '<td class="text-center">' + depto.Cantidad + '</td>' +
+                                '<td class="text-end">$' + parseFloat(depto.SalarioPromedio).toLocaleString('es-SV', { minimumFractionDigits: 2 }) + '</td>' +
+                                '<td class="text-center">' + Math.round(depto.AntiguedadPromedio) + ' años</td>' +
+                                '</tr>';
+                        });
+
+                        html += '</tbody></table>';
+                        $('#estadisticasModalBody').html(html);
+                    },
+                    error: function() {
+                        $('#estadisticasModalBody').html('<div class="alert alert-danger">Error al cargar estadísticas</div>');
+                    }
+                });
+            });
+        });
+	</script>
+}
+
+<style>
+	.display-4 {
+		font-size: 2rem;
+	}
+
+	.table td {
+		vertical-align: middle;
+	}
+</style>

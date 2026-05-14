@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecursosHumanosDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AsignacionHorarios">
+    <Key>
+      <PropertyRef Name="AsignacionHorariosID" />
+    </Key>
+    <Property Name="AsignacionHorariosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
+    <Property Name="HorarioID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Empleados" Relationship="Self.FK__Asignacio__Emple__5CD6CB2B" FromRole="AsignacionHorarios" ToRole="Empleados" />
+    <NavigationProperty Name="Horarios" Relationship="Self.FK__Asignacio__Horar__5DCAEF64" FromRole="AsignacionHorarios" ToRole="Horarios" />
+  </EntityType>
+  <EntityType Name="Cargos">
+    <Key>
+      <PropertyRef Name="CargoID" />
+    </Key>
+    <Property Name="CargoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DepartamentoID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departamentos" Relationship="Self.FK__Cargos__Departam__4CA06362" FromRole="Cargos" ToRole="Departamentos" />
+    <NavigationProperty Name="Empleados" Relationship="Self.FK__Empleados__Cargo__4F7CD00D" FromRole="Cargos" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="CatalogoPermisos">
+    <Key>
+      <PropertyRef Name="TipoPermisoID" />
+    </Key>
+    <Property Name="TipoPermisoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombrePermiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__TipoPe__5535A963" FromRole="CatalogoPermisos" ToRole="Permisos" />
+  </EntityType>
+  <EntityType Name="Departamentos">
+    <Key>
+      <PropertyRef Name="DepartamentoID" />
+    </Key>
+    <Property Name="DepartamentoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cargos" Relationship="Self.FK__Cargos__Departam__4CA06362" FromRole="Departamentos" ToRole="Cargos" />
+  </EntityType>
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="EmpleadoID" />
+    </Key>
+    <Property Name="EmpleadoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+    <Property Name="FechaSalida" Type="DateTime" Precision="0" />
+    <Property Name="HistorialLaboral" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CargoID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AsignacionHorarios" Relationship="Self.FK__Asignacio__Emple__5CD6CB2B" FromRole="Empleados" ToRole="AsignacionHorarios" />
+    <NavigationProperty Name="Cargos" Relationship="Self.FK__Empleados__Cargo__4F7CD00D" FromRole="Empleados" ToRole="Cargos" />
+    <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__Emplea__5441852A" FromRole="Empleados" ToRole="Permisos" />
+    <NavigationProperty Name="Planilla" Relationship="Self.FK__Planilla__Emplea__60A75C0F" FromRole="Empleados" ToRole="Planilla" />
+    <NavigationProperty Name="Salarios" Relationship="Self.FK__Salarios__Emplea__5812160E" FromRole="Empleados" ToRole="Salarios" />
+  </EntityType>
+  <EntityType Name="Horarios">
+    <Key>
+      <PropertyRef Name="HorarioID" />
+    </Key>
+    <Property Name="HorarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoraEntrada" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="HoraSalida" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="AsignacionHorarios" Relationship="Self.FK__Asignacio__Horar__5DCAEF64" FromRole="Horarios" ToRole="AsignacionHorarios" />
+  </EntityType>
+  <EntityType Name="Permisos">
+    <Key>
+      <PropertyRef Name="SolicitudPermisoID" />
+    </Key>
+    <Property Name="SolicitudPermisoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
+    <Property Name="TipoPermisoID" Type="Int32" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+    <Property Name="FechaFin" Type="DateTime" Precision="0" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CatalogoPermisos" Relationship="Self.FK__Permisos__TipoPe__5535A963" FromRole="Permisos" ToRole="CatalogoPermisos" />
+    <NavigationProperty Name="Empleados" Relationship="Self.FK__Permisos__Emplea__5441852A" FromRole="Permisos" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="Planilla">
+    <Key>
+      <PropertyRef Name="PlanillaID" />
+    </Key>
+    <Property Name="PlanillaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
+    <Property Name="Mes" Type="Int32" Nullable="false" />
+    <Property Name="Año" Type="Int32" Nullable="false" />
+    <Property Name="MontoTotal" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="AFP" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ISSS" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Renta" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="OtrasDeducciones" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Empleados" Relationship="Self.FK__Planilla__Emplea__60A75C0F" FromRole="Planilla" ToRole="Empleados" />
+  </EntityType>
+  <EntityType Name="Salarios">
+    <Key>
+      <PropertyRef Name="SalarioID" />
+    </Key>
+    <Property Name="SalarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="FechaInicio" Type="DateTime" Precision="0" />
+    <Property Name="FechaFin" Type="DateTime" Precision="0" />
+    <Property Name="EsActivo" Type="Boolean" />
+    <NavigationProperty Name="Empleados" Relationship="Self.FK__Salarios__Emplea__5812160E" FromRole="Salarios" ToRole="Empleados" />
+  </EntityType>
+  <Association Name="FK__Asignacio__Emple__5CD6CB2B">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+    <End Role="AsignacionHorarios" Type="Self.AsignacionHorarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoID" />
+      </Principal>
+      <Dependent Role="AsignacionHorarios">
+        <PropertyRef Name="EmpleadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Asignacio__Horar__5DCAEF64">
+    <End Role="Horarios" Type="Self.Horarios" Multiplicity="1" />
+    <End Role="AsignacionHorarios" Type="Self.AsignacionHorarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horarios">
+        <PropertyRef Name="HorarioID" />
+      </Principal>
+      <Dependent Role="AsignacionHorarios">
+        <PropertyRef Name="HorarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cargos__Departam__4CA06362">
+    <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
+    <End Role="Cargos" Type="Self.Cargos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamentos">
+        <PropertyRef Name="DepartamentoID" />
+      </Principal>
+      <Dependent Role="Cargos">
+        <PropertyRef Name="DepartamentoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleados__Cargo__4F7CD00D">
+    <End Role="Cargos" Type="Self.Cargos" Multiplicity="1" />
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargos">
+        <PropertyRef Name="CargoID" />
+      </Principal>
+      <Dependent Role="Empleados">
+        <PropertyRef Name="CargoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Permisos__TipoPe__5535A963">
+    <End Role="CatalogoPermisos" Type="Self.CatalogoPermisos" Multiplicity="1" />
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatalogoPermisos">
+        <PropertyRef Name="TipoPermisoID" />
+      </Principal>
+      <Dependent Role="Permisos">
+        <PropertyRef Name="TipoPermisoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Permisos__Emplea__5441852A">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoID" />
+      </Principal>
+      <Dependent Role="Permisos">
+        <PropertyRef Name="EmpleadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Planilla__Emplea__60A75C0F">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+    <End Role="Planilla" Type="Self.Planilla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoID" />
+      </Principal>
+      <Dependent Role="Planilla">
+        <PropertyRef Name="EmpleadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Salarios__Emplea__5812160E">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
+    <End Role="Salarios" Type="Self.Salarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoID" />
+      </Principal>
+      <Dependent Role="Salarios">
+        <PropertyRef Name="EmpleadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RecursosHumanosDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AsignacionHorarios" EntityType="Self.AsignacionHorarios" />
+    <EntitySet Name="Cargos" EntityType="Self.Cargos" />
+    <EntitySet Name="CatalogoPermisos" EntityType="Self.CatalogoPermisos" />
+    <EntitySet Name="Departamentos" EntityType="Self.Departamentos" />
+    <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+    <EntitySet Name="Horarios" EntityType="Self.Horarios" />
+    <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+    <EntitySet Name="Planilla" EntityType="Self.Planilla" />
+    <EntitySet Name="Salarios" EntityType="Self.Salarios" />
+    <AssociationSet Name="FK__Asignacio__Emple__5CD6CB2B" Association="Self.FK__Asignacio__Emple__5CD6CB2B">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="AsignacionHorarios" EntitySet="AsignacionHorarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Asignacio__Horar__5DCAEF64" Association="Self.FK__Asignacio__Horar__5DCAEF64">
+      <End Role="Horarios" EntitySet="Horarios" />
+      <End Role="AsignacionHorarios" EntitySet="AsignacionHorarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cargos__Departam__4CA06362" Association="Self.FK__Cargos__Departam__4CA06362">
+      <End Role="Departamentos" EntitySet="Departamentos" />
+      <End Role="Cargos" EntitySet="Cargos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleados__Cargo__4F7CD00D" Association="Self.FK__Empleados__Cargo__4F7CD00D">
+      <End Role="Cargos" EntitySet="Cargos" />
+      <End Role="Empleados" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Permisos__TipoPe__5535A963" Association="Self.FK__Permisos__TipoPe__5535A963">
+      <End Role="CatalogoPermisos" EntitySet="CatalogoPermisos" />
+      <End Role="Permisos" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Permisos__Emplea__5441852A" Association="Self.FK__Permisos__Emplea__5441852A">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Permisos" EntitySet="Permisos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Planilla__Emplea__60A75C0F" Association="Self.FK__Planilla__Emplea__60A75C0F">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Planilla" EntitySet="Planilla" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Salarios__Emplea__5812160E" Association="Self.FK__Salarios__Emplea__5812160E">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Salarios" EntitySet="Salarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

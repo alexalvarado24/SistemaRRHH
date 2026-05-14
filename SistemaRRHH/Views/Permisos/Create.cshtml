@@ -1,0 +1,182 @@
+﻿@model SistemaRRHH.Models.Permisos
+
+@{
+	ViewBag.Title = "Nueva Solicitud de Permiso";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="card shadow">
+				<div class="card-header bg-success text-white">
+					<h4 class="mb-0">Nueva Solicitud de Permiso</h4>
+				</div>
+				<div class="card-body">
+					@using (Html.BeginForm("Create", "Permisos", FormMethod.Post, new { @id = "formPermiso" }))
+					{
+						@Html.AntiForgeryToken()
+
+						<div class="alert alert-info" id="mensajeInfo" style="display:none;"></div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.EmpleadoID, "Empleado", new { @class = "form-label fw-bold" })
+								@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", @id = "EmpleadoID", @required = "required" })
+								@Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
+							</div>
+
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.TipoPermisoID, "Tipo de Permiso", new { @class = "form-label fw-bold" })
+								@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", @id = "TipoPermisoID", @required = "required" })
+								@Html.ValidationMessageFor(model => model.TipoPermisoID, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio", new { @class = "form-label fw-bold" })
+								@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaInicio", @required = "required" })
+								@Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+							</div>
+
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.FechaFin, "Fecha de Fin", new { @class = "form-label fw-bold" })
+								@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaFin", @required = "required" })
+								@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label class="form-label fw-bold">Días Solicitados</label>
+								<input type="text" id="DiasSolicitados" class="form-control" readonly />
+								<small class="text-muted">Se calcula automáticamente</small>
+							</div>
+
+							<div class="col-md-6 mb-3">
+								<label class="form-label fw-bold">Días Disponibles</label>
+								<input type="text" id="DiasDisponibles" class="form-control" readonly value="--" />
+								<small class="text-muted" id="disponibilidadMsg">Seleccione fechas para verificar</small>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12 mb-3">
+								@Html.LabelFor(model => model.Observaciones, "Observaciones", new { @class = "form-label fw-bold" })
+								@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional..." })
+								@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+						<hr />
+
+						<div class="d-flex justify-content-between">
+							<a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+							<button type="submit" id="btnGuardar" class="btn btn-success" disabled>Guardar Solicitud</button>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<script>
+        $(document).ready(function() {
+            function calcularDias() {
+                var fechaInicio = $('#FechaInicio').val();
+                var fechaFin = $('#FechaFin').val();
+
+                if (fechaInicio && fechaFin) {
+                    var inicio = new Date(fechaInicio);
+                    var fin = new Date(fechaFin);
+
+                    if (fin >= inicio) {
+                        var diffTime = Math.abs(fin - inicio);
+                        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                        $('#DiasSolicitados').val(diffDays);
+                        return diffDays;
+                    } else {
+                        $('#DiasSolicitados').val('');
+                        $('#mensajeInfo').show().text('La fecha de fin debe ser mayor o igual a la fecha de inicio').removeClass('alert-info').addClass('alert-warning');
+                        return 0;
+                    }
+                }
+                return 0;
+            }
+
+            function verificarDisponibilidad() {
+                var empleadoId = $('#EmpleadoID').val();
+                var tipoPermisoId = $('#TipoPermisoID').val();
+                var fechaInicio = $('#FechaInicio').val();
+                var fechaFin = $('#FechaFin').val();
+
+                if (empleadoId && tipoPermisoId && fechaInicio && fechaFin) {
+                    var diasSolicitados = calcularDias();
+
+                    if (diasSolicitados > 0) {
+                        $('#DiasDisponibles').val('Verificando...');
+                        $('#btnGuardar').prop('disabled', true);
+
+                        $.ajax({
+                            url: '@Url.Action("VerificarDiasDisponibles", "Permisos")',
+                            type: 'GET',
+                            data: {
+                                empleadoId: empleadoId,
+                                tipoPermisoId: tipoPermisoId,
+                                inicio: fechaInicio,
+                                fin: fechaFin
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.disponible) {
+                                    $('#DiasDisponibles').val(response.diasDisponibles + ' días');
+                                    $('#disponibilidadMsg').html('✓ Días disponibles: ' + response.diasDisponibles + ' de ' + response.maximoPermitido).css('color', 'green');
+                                    $('#mensajeInfo').hide();
+                                    $('#btnGuardar').prop('disabled', false);
+                                } else {
+                                    $('#DiasDisponibles').val('0 días');
+                                    $('#disponibilidadMsg').html('✗ No hay suficientes días. Máximo: ' + response.maximoPermitido + ' días, Usados: ' + response.diasUsados).css('color', 'red');
+                                    $('#mensajeInfo').show().text('No tiene suficientes días disponibles para este tipo de permiso').removeClass('alert-info').addClass('alert-warning');
+                                    $('#btnGuardar').prop('disabled', true);
+                                }
+                            },
+                            error: function() {
+                                $('#DiasDisponibles').val('Error');
+                                $('#disponibilidadMsg').text('Error al verificar disponibilidad').css('color', 'red');
+                            }
+                        });
+                    }
+                } else {
+                    $('#DiasDisponibles').val('--');
+                    $('#btnGuardar').prop('disabled', true);
+                }
+            }
+
+            $('#FechaInicio, #FechaFin').on('change', function() {
+                calcularDias();
+                verificarDisponibilidad();
+            });
+
+            $('#EmpleadoID, #TipoPermisoID').on('change', function() {
+                if ($('#FechaInicio').val() && $('#FechaFin').val()) {
+                    verificarDisponibilidad();
+                }
+            });
+
+            $('#formPermiso').on('submit', function(e) {
+                var disponible = $('#DiasDisponibles').val();
+                if (disponible === '0 días' || disponible === '--' || disponible === 'Error') {
+                    e.preventDefault();
+                    alert('No es posible guardar la solicitud porque no hay días suficientes disponibles.');
+                    return false;
+                }
+                return true;
+            });
+        });
+	</script>
+}

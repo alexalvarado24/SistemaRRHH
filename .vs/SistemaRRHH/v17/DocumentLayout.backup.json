@@ -1,0 +1,152 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|c:\\users\\hp\\documents\\visual studio 2022\\projects\\sistemarrhh\\sistemarrhh\\views\\permisos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\permisos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\permisos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\permisos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\permisos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\permisos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\empleados\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\empleados\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\controllers\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\controllers\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\models\\sistemarrhhmodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\models\\sistemarrhhmodel.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Index.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Permisos\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Index.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Permisos\\Index.cshtml",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAswDgBAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T21:59:24.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Permisos\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Edit.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Permisos\\Edit.cshtml",
+              "ViewState": "AgIAAP8AAAAAAAAAAADwvxgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T22:06:39.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Create.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Permisos\\Create.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Create.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Permisos\\Create.cshtml",
+              "ViewState": "AgIAAJwAAAAAAAAAAADwv7UAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T22:06:02.63Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T21:59:57.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "ViewState": "AgIAAAMBAAAAAAAAAADwvxwBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T21:58:16.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PermisosController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\PermisosController.cs",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\PermisosController.cs",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\PermisosController.cs",
+              "RelativeToolTip": "SistemaRRHH\\Controllers\\PermisosController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T21:57:04.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EmpleadosController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "RelativeToolTip": "SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "ViewState": "AgIAACUBAAAAAAAAAAAuwDgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T21:56:36.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SistemaRRHHModel.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Models\\SistemaRRHHModel.edmx",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Models\\SistemaRRHHModel.edmx",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Models\\SistemaRRHHModel.edmx [Diagram1]",
+              "RelativeToolTip": "SistemaRRHH\\Models\\SistemaRRHHModel.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2026-05-13T21:55:10.975Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

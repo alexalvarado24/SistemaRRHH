@@ -1,0 +1,281 @@
+﻿@model SistemaRRHH.Models.Permisos
+
+@{
+	ViewBag.Title = "Editar Solicitud de Permiso";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="card shadow">
+				<div class="card-header bg-warning text-white">
+					<h4 class="mb-0">
+						<i class="fas fa-edit"></i> Editar Solicitud de Permiso #@Model.SolicitudPermisoID
+					</h4>
+				</div>
+				<div class="card-body">
+					@using (Html.BeginForm("Edit", "Permisos", FormMethod.Post, new { @id = "formPermiso", @class = "needs-validation" }))
+					{
+						@Html.AntiForgeryToken()
+						@Html.HiddenFor(model => model.SolicitudPermisoID)
+
+						<div class="alert alert-info" id="mensajeInfo" style="display:none;">
+							<i class="fas fa-info-circle"></i> <span id="infoTexto"></span>
+						</div>
+
+						<div class="alert alert-secondary">
+							<i class="fas fa-info-circle"></i> <strong>Estado actual:</strong>
+							<span class="badge @(Model.Estado == "Aprobado" ? "bg-success" : (Model.Estado == "Rechazado" ? "bg-danger" : "bg-warning"))">
+								@Model.Estado
+							</span>
+							@if (Model.Estado != "Pendiente")
+							{
+								<span class="text-danger d-block mt-1">
+									<i class="fas fa-lock"></i> Las solicitudes aprobadas o rechazadas no pueden modificarse.
+								</span>
+							}
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.EmpleadoID, "Empleado", new { @class = "form-label fw-bold" })
+								@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", @id = "EmpleadoID", @disabled = Model.Estado != "PENDIENTE" })
+								@Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
+								@if (Model.Estado != "PENDIENTE")
+								{
+									@Html.HiddenFor(model => model.EmpleadoID)
+								}
+							</div>
+
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.TipoPermisoID, "Tipo de Permiso", new { @class = "form-label fw-bold" })
+								@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", @id = "TipoPermisoID", @disabled = Model.Estado != "PENDIENTE" })
+								@Html.ValidationMessageFor(model => model.TipoPermisoID, "", new { @class = "text-danger" })
+								@if (Model.Estado != "PENDIENTE")
+								{
+									@Html.HiddenFor(model => model.TipoPermisoID)
+								}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio", new { @class = "form-label fw-bold" })
+								@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaInicio", @disabled = Model.Estado != "PENDIENTE" })
+								@Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+								@if (Model.Estado != "PENDIENTE")
+								{
+									@Html.HiddenFor(model => model.FechaInicio)
+								}
+							</div>
+
+							<div class="col-md-6 mb-3">
+								@Html.LabelFor(model => model.FechaFin, "Fecha de Fin", new { @class = "form-label fw-bold" })
+								@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaFin", @disabled = Model.Estado != "PENDIENTE" })
+								@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+								@if (Model.Estado != "PENDIENTE")
+								{
+									@Html.HiddenFor(model => model.FechaFin)
+								}
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label class="form-label fw-bold">Días Solicitados</label>
+								<div class="input-group">
+									<span class="input-group-text bg-info text-white">
+										<i class="fas fa-calendar-day"></i>
+									</span>
+									<input type="text" id="DiasSolicitados" class="form-control" readonly />
+								</div>
+							</div>
+
+							<div class="col-md-6 mb-3">
+								<label class="form-label fw-bold">Días Disponibles</label>
+								<div class="input-group">
+									<span class="input-group-text bg-warning text-white">
+										<i class="fas fa-clock"></i>
+									</span>
+									<input type="text" id="DiasDisponibles" class="form-control" readonly value="--" />
+								</div>
+								<small class="text-muted" id="disponibilidadMsg"></small>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12 mb-3">
+								@Html.LabelFor(model => model.Observaciones, "Observaciones", new { @class = "form-label fw-bold" })
+								@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional...", @disabled = Model.Estado != "PENDIENTE" })
+								@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+								@if (Model.Estado != "PENDIENTE" && !string.IsNullOrEmpty(Model.Observaciones))
+								{
+									<small class="text-muted">Nota: Las observaciones no pueden modificarse una vez aprobado/rechazado.</small>
+								}
+							</div>
+						</div>
+
+						<hr />
+
+						<div class="d-flex justify-content-between">
+							<a href="@Url.Action("Index")" class="btn btn-secondary">
+								<i class="fas fa-arrow-left"></i> Cancelar
+							</a>
+							@if (Model.Estado == "PENDIENTE")
+							{
+								<button type="submit" id="btnGuardar" class="btn btn-primary" disabled>
+									<i class="fas fa-save"></i> Actualizar Solicitud
+								</button>
+							}
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+	<script>
+        $(document).ready(function() {
+            var estadoOriginal = '@Model.Estado';
+
+            // Si el permiso ya no está pendiente, no permitir cambios
+            if (estadoOriginal !== 'PENDIENTE') {
+                $('#btnGuardar').prop('disabled', true);
+                return;
+            }
+
+            // Función para calcular días entre fechas
+            function calcularDias() {
+                var fechaInicio = $('#FechaInicio').val();
+                var fechaFin = $('#FechaFin').val();
+
+                if (fechaInicio && fechaFin) {
+                    var inicio = new Date(fechaInicio);
+                    var fin = new Date(fechaFin);
+
+                    if (fin >= inicio) {
+                        var diffTime = Math.abs(fin - inicio);
+                        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                        $('#DiasSolicitados').val(diffDays);
+                        return diffDays;
+                    } else {
+                        $('#DiasSolicitados').val('Fecha inválida');
+                        return 0;
+                    }
+                }
+                return 0;
+            }
+
+            // Función para verificar disponibilidad vía AJAX
+            function verificarDisponibilidad() {
+                var empleadoId = $('#EmpleadoID').val();
+                var tipoPermisoId = $('#TipoPermisoID').val();
+                var fechaInicio = $('#FechaInicio').val();
+                var fechaFin = $('#FechaFin').val();
+
+                if (empleadoId && tipoPermisoId && fechaInicio && fechaFin) {
+                    var diasSolicitados = calcularDias();
+
+                    if (diasSolicitados > 0) {
+                        $('#DiasDisponibles').val('Verificando...');
+                        $('#btnGuardar').prop('disabled', true);
+
+                        $.ajax({
+                            url: '@Url.Action("VerificarDiasDisponibles", "Permisos")',
+                            type: 'GET',
+                            data: {
+                                empleadoId: empleadoId,
+                                tipoPermisoId: tipoPermisoId,
+                                inicio: fechaInicio,
+                                fin: fechaFin
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.disponible) {
+                                    $('#DiasDisponibles').val(response.diasDisponibles + ' días');
+                                    $('#disponibilidadMsg').html('<span class="text-success">✓ Días disponibles: ' + response.diasDisponibles + ' de ' + response.maximoPermitido + '</span>');
+                                    $('#mensajeInfo').hide();
+                                    $('#btnGuardar').prop('disabled', false);
+                                } else {
+                                    $('#DiasDisponibles').val('0 días');
+                                    $('#disponibilidadMsg').html('<span class="text-danger">✗ No hay suficientes días. Máximo: ' + response.maximoPermitido + ' días, Usados: ' + response.diasUsados + '</span>');
+                                    $('#mensajeInfo').show().removeClass('alert-info').addClass('alert-warning').find('#infoTexto').text('No tiene suficientes días disponibles para este tipo de permiso');
+                                    $('#btnGuardar').prop('disabled', true);
+                                }
+                            },
+                            error: function() {
+                                $('#DiasDisponibles').val('Error');
+                                $('#disponibilidadMsg').html('<span class="text-danger">Error al verificar disponibilidad</span>');
+                            }
+                        });
+                    }
+                }
+            }
+
+            // Calcular días iniciales
+            calcularDias();
+
+            // Si el permiso está pendiente, verificar disponibilidad
+            if (estadoOriginal === 'PENDIENTE') {
+                verificarDisponibilidad();
+            }
+
+            // Eventos para recalcular
+            $('#FechaInicio, #FechaFin').on('change', function() {
+                if (estadoOriginal === 'PENDIENTE') {
+                    calcularDias();
+                    verificarDisponibilidad();
+                }
+            });
+
+            // Validación antes de enviar
+            $('#formPermiso').on('submit', function(e) {
+                if (estadoOriginal !== 'Pendiente') {
+                    e.preventDefault();
+                    alert('No se pueden modificar solicitudes aprobadas o rechazadas.');
+                    return false;
+                }
+
+                var disponible = $('#DiasDisponibles').val();
+                if (disponible === '0 días' || disponible === '--' || disponible === 'Error') {
+                    e.preventDefault();
+                    alert('No es posible guardar la solicitud porque no hay días suficientes disponibles.');
+                    return false;
+                }
+                return true;
+            });
+        });
+	</script>
+
+	<style>
+		.card {
+			border-radius: 15px;
+			overflow: hidden;
+		}
+
+		.card-header {
+			border-bottom: none;
+		}
+
+		.form-control:focus, .form-select:focus {
+			border-color: #ffc107;
+			box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+		}
+
+		.btn {
+			border-radius: 8px;
+			padding: 10px 25px;
+		}
+
+		input:disabled, select:disabled, textarea:disabled {
+			background-color: #e9ecef;
+			cursor: not-allowed;
+		}
+	</style>
+}
