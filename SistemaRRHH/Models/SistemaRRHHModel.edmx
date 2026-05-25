@@ -12,6 +12,10 @@
           <Property Name="AsignacionHorariosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpleadoID" Type="int" Nullable="false" />
           <Property Name="HorarioID" Type="int" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="date" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Cargos">
           <Key>
@@ -21,6 +25,9 @@
           <Property Name="NombreCargo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="text" />
           <Property Name="DepartamentoID" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="CatalogoPermisos">
           <Key>
@@ -29,6 +36,10 @@
           <Property Name="TipoPermisoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombrePermiso" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="text" />
+          <Property Name="DiasMaximos" Type="int" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Departamentos">
           <Key>
@@ -37,6 +48,9 @@
           <Property Name="DepartamentoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="text" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -54,6 +68,9 @@
           <Property Name="HistorialLaboral" Type="text" />
           <Property Name="Observaciones" Type="text" />
           <Property Name="CargoID" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Horarios">
           <Key>
@@ -62,6 +79,10 @@
           <Property Name="HorarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoraEntrada" Type="time" Precision="7" Nullable="false" />
           <Property Name="HoraSalida" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -74,6 +95,9 @@
           <Property Name="FechaFin" Type="date" />
           <Property Name="Estado" Type="varchar" MaxLength="50" />
           <Property Name="Observaciones" Type="text" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Planilla">
           <Key>
@@ -88,6 +112,10 @@
           <Property Name="ISSS" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Renta" Type="decimal" Precision="10" Scale="2" />
           <Property Name="OtrasDeducciones" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Salarios">
           <Key>
@@ -98,9 +126,11 @@
           <Property Name="Monto" Type="decimal" Precision="10" Scale="2" />
           <Property Name="FechaInicio" Type="date" />
           <Property Name="FechaFin" Type="date" />
-          <Property Name="EsActivo" Type="bit" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Asignacio__Emple__5CD6CB2B">
+        <Association Name="FK__Asignacio__Emple__7755B73D">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="AsignacionHorarios" Type="Self.AsignacionHorarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -112,7 +142,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asignacio__Horar__5DCAEF64">
+        <Association Name="FK__Asignacio__Horar__7849DB76">
           <End Role="Horarios" Type="Self.Horarios" Multiplicity="1" />
           <End Role="AsignacionHorarios" Type="Self.AsignacionHorarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +154,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cargos__Departam__4CA06362">
+        <Association Name="FK__Cargos__Departam__5AB9788F">
           <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
           <End Role="Cargos" Type="Self.Cargos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +166,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleados__Cargo__4F7CD00D">
+        <Association Name="FK__Empleados__Cargo__5F7E2DAC">
           <End Role="Cargos" Type="Self.Cargos" Multiplicity="1" />
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Permisos__Emplea__5441852A">
+        <Association Name="FK__Permisos__Emplea__681373AD">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Permisos__TipoPe__5535A963">
+        <Association Name="FK__Permisos__TipoPe__690797E6">
           <End Role="CatalogoPermisos" Type="Self.CatalogoPermisos" Multiplicity="1" />
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +202,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Planilla__Emplea__60A75C0F">
+        <Association Name="FK__Planilla__Emplea__7E02B4CC">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Planilla" Type="Self.Planilla" Multiplicity="*" />
           <ReferentialConstraint>
@@ -184,7 +214,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Salarios__Emplea__5812160E">
+        <Association Name="FK__Salarios__Emplea__6DCC4D03">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Salarios" Type="Self.Salarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -206,35 +236,35 @@
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Planilla" EntityType="Self.Planilla" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Salarios" EntityType="Self.Salarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Asignacio__Emple__5CD6CB2B" Association="Self.FK__Asignacio__Emple__5CD6CB2B">
+          <AssociationSet Name="FK__Asignacio__Emple__7755B73D" Association="Self.FK__Asignacio__Emple__7755B73D">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="AsignacionHorarios" EntitySet="AsignacionHorarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asignacio__Horar__5DCAEF64" Association="Self.FK__Asignacio__Horar__5DCAEF64">
+          <AssociationSet Name="FK__Asignacio__Horar__7849DB76" Association="Self.FK__Asignacio__Horar__7849DB76">
             <End Role="Horarios" EntitySet="Horarios" />
             <End Role="AsignacionHorarios" EntitySet="AsignacionHorarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cargos__Departam__4CA06362" Association="Self.FK__Cargos__Departam__4CA06362">
+          <AssociationSet Name="FK__Cargos__Departam__5AB9788F" Association="Self.FK__Cargos__Departam__5AB9788F">
             <End Role="Departamentos" EntitySet="Departamentos" />
             <End Role="Cargos" EntitySet="Cargos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleados__Cargo__4F7CD00D" Association="Self.FK__Empleados__Cargo__4F7CD00D">
+          <AssociationSet Name="FK__Empleados__Cargo__5F7E2DAC" Association="Self.FK__Empleados__Cargo__5F7E2DAC">
             <End Role="Cargos" EntitySet="Cargos" />
             <End Role="Empleados" EntitySet="Empleados" />
           </AssociationSet>
-          <AssociationSet Name="FK__Permisos__Emplea__5441852A" Association="Self.FK__Permisos__Emplea__5441852A">
+          <AssociationSet Name="FK__Permisos__Emplea__681373AD" Association="Self.FK__Permisos__Emplea__681373AD">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Permisos__TipoPe__5535A963" Association="Self.FK__Permisos__TipoPe__5535A963">
+          <AssociationSet Name="FK__Permisos__TipoPe__690797E6" Association="Self.FK__Permisos__TipoPe__690797E6">
             <End Role="CatalogoPermisos" EntitySet="CatalogoPermisos" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Planilla__Emplea__60A75C0F" Association="Self.FK__Planilla__Emplea__60A75C0F">
+          <AssociationSet Name="FK__Planilla__Emplea__7E02B4CC" Association="Self.FK__Planilla__Emplea__7E02B4CC">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Planilla" EntitySet="Planilla" />
           </AssociationSet>
-          <AssociationSet Name="FK__Salarios__Emplea__5812160E" Association="Self.FK__Salarios__Emplea__5812160E">
+          <AssociationSet Name="FK__Salarios__Emplea__6DCC4D03" Association="Self.FK__Salarios__Emplea__6DCC4D03">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Salarios" EntitySet="Salarios" />
           </AssociationSet>
@@ -251,8 +281,12 @@
           <Property Name="AsignacionHorariosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
           <Property Name="HorarioID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Empleados" Relationship="Self.FK__Asignacio__Emple__5CD6CB2B" FromRole="AsignacionHorarios" ToRole="Empleados" />
-          <NavigationProperty Name="Horarios" Relationship="Self.FK__Asignacio__Horar__5DCAEF64" FromRole="AsignacionHorarios" ToRole="Horarios" />
+          <Property Name="FechaAsignacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__Asignacio__Emple__7755B73D" FromRole="AsignacionHorarios" ToRole="Empleados" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK__Asignacio__Horar__7849DB76" FromRole="AsignacionHorarios" ToRole="Horarios" />
         </EntityType>
         <EntityType Name="Cargos">
           <Key>
@@ -262,8 +296,11 @@
           <Property Name="NombreCargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="DepartamentoID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Departamentos" Relationship="Self.FK__Cargos__Departam__4CA06362" FromRole="Cargos" ToRole="Departamentos" />
-          <NavigationProperty Name="Empleados" Relationship="Self.FK__Empleados__Cargo__4F7CD00D" FromRole="Cargos" ToRole="Empleados" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Departamentos" Relationship="Self.FK__Cargos__Departam__5AB9788F" FromRole="Cargos" ToRole="Departamentos" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__Empleados__Cargo__5F7E2DAC" FromRole="Cargos" ToRole="Empleados" />
         </EntityType>
         <EntityType Name="CatalogoPermisos">
           <Key>
@@ -272,7 +309,11 @@
           <Property Name="TipoPermisoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombrePermiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__TipoPe__5535A963" FromRole="CatalogoPermisos" ToRole="Permisos" />
+          <Property Name="DiasMaximos" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__TipoPe__690797E6" FromRole="CatalogoPermisos" ToRole="Permisos" />
         </EntityType>
         <EntityType Name="Departamentos">
           <Key>
@@ -281,7 +322,10 @@
           <Property Name="DepartamentoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cargos" Relationship="Self.FK__Cargos__Departam__4CA06362" FromRole="Departamentos" ToRole="Cargos" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cargos" Relationship="Self.FK__Cargos__Departam__5AB9788F" FromRole="Departamentos" ToRole="Cargos" />
         </EntityType>
         <EntityType Name="Empleados">
           <Key>
@@ -299,11 +343,14 @@
           <Property Name="HistorialLaboral" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CargoID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AsignacionHorarios" Relationship="Self.FK__Asignacio__Emple__5CD6CB2B" FromRole="Empleados" ToRole="AsignacionHorarios" />
-          <NavigationProperty Name="Cargos" Relationship="Self.FK__Empleados__Cargo__4F7CD00D" FromRole="Empleados" ToRole="Cargos" />
-          <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__Emplea__5441852A" FromRole="Empleados" ToRole="Permisos" />
-          <NavigationProperty Name="Planilla" Relationship="Self.FK__Planilla__Emplea__60A75C0F" FromRole="Empleados" ToRole="Planilla" />
-          <NavigationProperty Name="Salarios" Relationship="Self.FK__Salarios__Emplea__5812160E" FromRole="Empleados" ToRole="Salarios" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AsignacionHorarios" Relationship="Self.FK__Asignacio__Emple__7755B73D" FromRole="Empleados" ToRole="AsignacionHorarios" />
+          <NavigationProperty Name="Cargos" Relationship="Self.FK__Empleados__Cargo__5F7E2DAC" FromRole="Empleados" ToRole="Cargos" />
+          <NavigationProperty Name="Permisos" Relationship="Self.FK__Permisos__Emplea__681373AD" FromRole="Empleados" ToRole="Permisos" />
+          <NavigationProperty Name="Planilla" Relationship="Self.FK__Planilla__Emplea__7E02B4CC" FromRole="Empleados" ToRole="Planilla" />
+          <NavigationProperty Name="Salarios" Relationship="Self.FK__Salarios__Emplea__6DCC4D03" FromRole="Empleados" ToRole="Salarios" />
         </EntityType>
         <EntityType Name="Horarios">
           <Key>
@@ -312,7 +359,11 @@
           <Property Name="HorarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HoraEntrada" Type="Time" Nullable="false" Precision="7" />
           <Property Name="HoraSalida" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="AsignacionHorarios" Relationship="Self.FK__Asignacio__Horar__5DCAEF64" FromRole="Horarios" ToRole="AsignacionHorarios" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AsignacionHorarios" Relationship="Self.FK__Asignacio__Horar__7849DB76" FromRole="Horarios" ToRole="AsignacionHorarios" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -325,8 +376,11 @@
           <Property Name="FechaFin" Type="DateTime" Precision="0" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CatalogoPermisos" Relationship="Self.FK__Permisos__TipoPe__5535A963" FromRole="Permisos" ToRole="CatalogoPermisos" />
-          <NavigationProperty Name="Empleados" Relationship="Self.FK__Permisos__Emplea__5441852A" FromRole="Permisos" ToRole="Empleados" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CatalogoPermisos" Relationship="Self.FK__Permisos__TipoPe__690797E6" FromRole="Permisos" ToRole="CatalogoPermisos" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__Permisos__Emplea__681373AD" FromRole="Permisos" ToRole="Empleados" />
         </EntityType>
         <EntityType Name="Planilla">
           <Key>
@@ -341,7 +395,11 @@
           <Property Name="ISSS" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Renta" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="OtrasDeducciones" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Empleados" Relationship="Self.FK__Planilla__Emplea__60A75C0F" FromRole="Planilla" ToRole="Empleados" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__Planilla__Emplea__7E02B4CC" FromRole="Planilla" ToRole="Empleados" />
         </EntityType>
         <EntityType Name="Salarios">
           <Key>
@@ -352,10 +410,12 @@
           <Property Name="Monto" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="FechaInicio" Type="DateTime" Precision="0" />
           <Property Name="FechaFin" Type="DateTime" Precision="0" />
-          <Property Name="EsActivo" Type="Boolean" />
-          <NavigationProperty Name="Empleados" Relationship="Self.FK__Salarios__Emplea__5812160E" FromRole="Salarios" ToRole="Empleados" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK__Salarios__Emplea__6DCC4D03" FromRole="Salarios" ToRole="Empleados" />
         </EntityType>
-        <Association Name="FK__Asignacio__Emple__5CD6CB2B">
+        <Association Name="FK__Asignacio__Emple__7755B73D">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="AsignacionHorarios" Type="Self.AsignacionHorarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -367,7 +427,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asignacio__Horar__5DCAEF64">
+        <Association Name="FK__Asignacio__Horar__7849DB76">
           <End Role="Horarios" Type="Self.Horarios" Multiplicity="1" />
           <End Role="AsignacionHorarios" Type="Self.AsignacionHorarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -379,7 +439,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cargos__Departam__4CA06362">
+        <Association Name="FK__Cargos__Departam__5AB9788F">
           <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
           <End Role="Cargos" Type="Self.Cargos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -391,7 +451,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleados__Cargo__4F7CD00D">
+        <Association Name="FK__Empleados__Cargo__5F7E2DAC">
           <End Role="Cargos" Type="Self.Cargos" Multiplicity="1" />
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
           <ReferentialConstraint>
@@ -403,7 +463,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Permisos__TipoPe__5535A963">
+        <Association Name="FK__Permisos__TipoPe__690797E6">
           <End Role="CatalogoPermisos" Type="Self.CatalogoPermisos" Multiplicity="1" />
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -415,7 +475,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Permisos__Emplea__5441852A">
+        <Association Name="FK__Permisos__Emplea__681373AD">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -427,7 +487,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Planilla__Emplea__60A75C0F">
+        <Association Name="FK__Planilla__Emplea__7E02B4CC">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Planilla" Type="Self.Planilla" Multiplicity="*" />
           <ReferentialConstraint>
@@ -439,7 +499,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Salarios__Emplea__5812160E">
+        <Association Name="FK__Salarios__Emplea__6DCC4D03">
           <End Role="Empleados" Type="Self.Empleados" Multiplicity="1" />
           <End Role="Salarios" Type="Self.Salarios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -461,35 +521,35 @@
           <EntitySet Name="Permisos" EntityType="Self.Permisos" />
           <EntitySet Name="Planilla" EntityType="Self.Planilla" />
           <EntitySet Name="Salarios" EntityType="Self.Salarios" />
-          <AssociationSet Name="FK__Asignacio__Emple__5CD6CB2B" Association="Self.FK__Asignacio__Emple__5CD6CB2B">
+          <AssociationSet Name="FK__Asignacio__Emple__7755B73D" Association="Self.FK__Asignacio__Emple__7755B73D">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="AsignacionHorarios" EntitySet="AsignacionHorarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asignacio__Horar__5DCAEF64" Association="Self.FK__Asignacio__Horar__5DCAEF64">
+          <AssociationSet Name="FK__Asignacio__Horar__7849DB76" Association="Self.FK__Asignacio__Horar__7849DB76">
             <End Role="Horarios" EntitySet="Horarios" />
             <End Role="AsignacionHorarios" EntitySet="AsignacionHorarios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cargos__Departam__4CA06362" Association="Self.FK__Cargos__Departam__4CA06362">
+          <AssociationSet Name="FK__Cargos__Departam__5AB9788F" Association="Self.FK__Cargos__Departam__5AB9788F">
             <End Role="Departamentos" EntitySet="Departamentos" />
             <End Role="Cargos" EntitySet="Cargos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleados__Cargo__4F7CD00D" Association="Self.FK__Empleados__Cargo__4F7CD00D">
+          <AssociationSet Name="FK__Empleados__Cargo__5F7E2DAC" Association="Self.FK__Empleados__Cargo__5F7E2DAC">
             <End Role="Cargos" EntitySet="Cargos" />
             <End Role="Empleados" EntitySet="Empleados" />
           </AssociationSet>
-          <AssociationSet Name="FK__Permisos__TipoPe__5535A963" Association="Self.FK__Permisos__TipoPe__5535A963">
+          <AssociationSet Name="FK__Permisos__TipoPe__690797E6" Association="Self.FK__Permisos__TipoPe__690797E6">
             <End Role="CatalogoPermisos" EntitySet="CatalogoPermisos" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Permisos__Emplea__5441852A" Association="Self.FK__Permisos__Emplea__5441852A">
+          <AssociationSet Name="FK__Permisos__Emplea__681373AD" Association="Self.FK__Permisos__Emplea__681373AD">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Permisos" EntitySet="Permisos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Planilla__Emplea__60A75C0F" Association="Self.FK__Planilla__Emplea__60A75C0F">
+          <AssociationSet Name="FK__Planilla__Emplea__7E02B4CC" Association="Self.FK__Planilla__Emplea__7E02B4CC">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Planilla" EntitySet="Planilla" />
           </AssociationSet>
-          <AssociationSet Name="FK__Salarios__Emplea__5812160E" Association="Self.FK__Salarios__Emplea__5812160E">
+          <AssociationSet Name="FK__Salarios__Emplea__6DCC4D03" Association="Self.FK__Salarios__Emplea__6DCC4D03">
             <End Role="Empleados" EntitySet="Empleados" />
             <End Role="Salarios" EntitySet="Salarios" />
           </AssociationSet>
@@ -506,6 +566,10 @@
                 <ScalarProperty Name="AsignacionHorariosID" ColumnName="AsignacionHorariosID" />
                 <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
                 <ScalarProperty Name="HorarioID" ColumnName="HorarioID" />
+                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -516,6 +580,9 @@
                 <ScalarProperty Name="NombreCargo" ColumnName="NombreCargo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -525,6 +592,10 @@
                 <ScalarProperty Name="TipoPermisoID" ColumnName="TipoPermisoID" />
                 <ScalarProperty Name="NombrePermiso" ColumnName="NombrePermiso" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="DiasMaximos" ColumnName="DiasMaximos" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -534,6 +605,9 @@
                 <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -552,6 +626,9 @@
                 <ScalarProperty Name="HistorialLaboral" ColumnName="HistorialLaboral" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
                 <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -561,6 +638,10 @@
                 <ScalarProperty Name="HorarioID" ColumnName="HorarioID" />
                 <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
                 <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -574,6 +655,9 @@
                 <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -589,6 +673,10 @@
                 <ScalarProperty Name="ISSS" ColumnName="ISSS" />
                 <ScalarProperty Name="Renta" ColumnName="Renta" />
                 <ScalarProperty Name="OtrasDeducciones" ColumnName="OtrasDeducciones" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -600,7 +688,9 @@
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,6 +7,10 @@
           <ScalarProperty Name="AsignacionHorariosID" ColumnName="AsignacionHorariosID" />
           <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
           <ScalarProperty Name="HorarioID" ColumnName="HorarioID" />
+          <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -17,6 +21,9 @@
           <ScalarProperty Name="NombreCargo" ColumnName="NombreCargo" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -26,6 +33,10 @@
           <ScalarProperty Name="TipoPermisoID" ColumnName="TipoPermisoID" />
           <ScalarProperty Name="NombrePermiso" ColumnName="NombrePermiso" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="DiasMaximos" ColumnName="DiasMaximos" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -35,6 +46,9 @@
           <ScalarProperty Name="DepartamentoID" ColumnName="DepartamentoID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,6 +67,9 @@
           <ScalarProperty Name="HistorialLaboral" ColumnName="HistorialLaboral" />
           <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
           <ScalarProperty Name="CargoID" ColumnName="CargoID" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -62,6 +79,10 @@
           <ScalarProperty Name="HorarioID" ColumnName="HorarioID" />
           <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
           <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,6 +96,9 @@
           <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -90,6 +114,10 @@
           <ScalarProperty Name="ISSS" ColumnName="ISSS" />
           <ScalarProperty Name="Renta" ColumnName="Renta" />
           <ScalarProperty Name="OtrasDeducciones" ColumnName="OtrasDeducciones" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -101,7 +129,9 @@
           <ScalarProperty Name="Monto" ColumnName="Monto" />
           <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
           <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-          <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

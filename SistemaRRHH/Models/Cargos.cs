@@ -24,6 +24,9 @@ namespace SistemaRRHH.Models
         public string NombreCargo { get; set; }
         public string Descripcion { get; set; }
         public int DepartamentoID { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
         public virtual Departamentos Departamentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

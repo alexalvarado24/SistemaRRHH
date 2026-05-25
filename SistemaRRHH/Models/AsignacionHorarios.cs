@@ -17,6 +17,10 @@ namespace SistemaRRHH.Models
         public int AsignacionHorariosID { get; set; }
         public int EmpleadoID { get; set; }
         public int HorarioID { get; set; }
+        public System.DateTime FechaAsignacion { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
         public virtual Empleados Empleados { get; set; }
         public virtual Horarios Horarios { get; set; }

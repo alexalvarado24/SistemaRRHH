@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8a31e17c00a24a04a509314658537b19" Name="Diagram1">
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.AsignacionHorarios" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Cargos" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.CatalogoPermisos" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Departamentos" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Empleados" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Horarios" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Permisos" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Planilla" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecursosHumanosDBModel.Salarios" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Asignacio__Emple__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Asignacio__Horar__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Cargos__Departam__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Empleados__Cargo__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Permisos__TipoPe__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Permisos__Emplea__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Planilla__Emplea__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="RecursosHumanosDBModel.FK__Salarios__Emplea__5812160E" ManuallyRouted="false" />
+      <Diagram DiagramId="8108a620bfcf4051b764c6bdb1c0433d" Name="Diagram1">
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.AsignacionHorarios" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Cargos" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.CatalogoPermisos" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Departamentos" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Empleados" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Horarios" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Permisos" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Planilla" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecursosHumanosDBModel.Salarios" Width="1.5" PointX="7.5" PointY="17.375" IsExpanded="true" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Asignacio__Emple__7755B73D" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Asignacio__Horar__7849DB76" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Cargos__Departam__5AB9788F" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Empleados__Cargo__5F7E2DAC" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Permisos__TipoPe__690797E6" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Permisos__Emplea__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Planilla__Emplea__7E02B4CC" ManuallyRouted="false" />
+        <AssociationConnector Association="RecursosHumanosDBModel.FK__Salarios__Emplea__6DCC4D03" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

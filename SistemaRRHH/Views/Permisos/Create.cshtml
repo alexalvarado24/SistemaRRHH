@@ -5,178 +5,351 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-4">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="card shadow">
-				<div class="card-header bg-success text-white">
-					<h4 class="mb-0">Nueva Solicitud de Permiso</h4>
+<style>
+    .card {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    }
+    .card-header {
+        border-radius: 15px 15px 0 0 !important;
+        padding: 1.5rem;
+    }
+    .form-label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+    .required:after {
+        content: " *";
+        color: #dc3545;
+        font-weight: bold;
+    }
+    .info-box {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-left: 4px solid #28a745;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        transition: all 0.3s;
+    }
+    .info-box:hover {
+        background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        transform: translateX(5px);
+    }
+    .info-icon {
+        font-size: 28px;
+        margin-right: 15px;
+        color: #28a745;
+    }
+    .stat-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        transition: all 0.3s;
+        border: 1px solid #e9ecef;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .stat-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+    .alert {
+        border-radius: 10px;
+        border: none;
+        animation: slideIn 0.5s ease;
+    }
+    .btn-save {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        border: none;
+        padding: 12px 35px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+    .btn-save:disabled {
+        opacity: 0.6;
+        transform: none;
+    }
+    .btn-cancel {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        border: none;
+        padding: 12px 35px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn-cancel:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+    }
+    select.form-control:focus, input.form-control:focus, textarea.form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+</style>
+
+<h2 class="mb-4">
+	<i class="fas fa-calendar-plus text-success"></i> Nueva Solicitud de Permiso
+</h2>
+
+@if (TempData["Success"] != null)
+{
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<i class="fas fa-check-circle"></i> @TempData["Success"]
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	</div>
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="card">
+		<div class="card-header bg-success text-white">
+			<h5 class="mb-0">
+				<i class="fas fa-info-circle"></i> Información del Permiso
+			</h5>
+		</div>
+		<div class="card-body">
+			<div class="info-box" id="infoLimites">
+				<div class="d-flex align-items-center">
+					<div class="info-icon">
+						<i class="fas fa-chart-line"></i>
+					</div>
+					<div>
+						<strong><i class="fas fa-info-circle"></i> Límites por tipo de permiso:</strong><br />
+						<span id="infoLimiteTexto">Seleccione un tipo de permiso para ver sus límites</span>
+					</div>
 				</div>
-				<div class="card-body">
-					@using (Html.BeginForm("Create", "Permisos", FormMethod.Post, new { @id = "formPermiso" }))
-					{
-						@Html.AntiForgeryToken()
+			</div>
 
-						<div class="alert alert-info" id="mensajeInfo" style="display:none;"></div>
-
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								@Html.LabelFor(model => model.EmpleadoID, "Empleado", new { @class = "form-label fw-bold" })
-								@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", @id = "EmpleadoID", @required = "required" })
-								@Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
-							</div>
-
-							<div class="col-md-6 mb-3">
-								@Html.LabelFor(model => model.TipoPermisoID, "Tipo de Permiso", new { @class = "form-label fw-bold" })
-								@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", @id = "TipoPermisoID", @required = "required" })
-								@Html.ValidationMessageFor(model => model.TipoPermisoID, "", new { @class = "text-danger" })
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								@Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio", new { @class = "form-label fw-bold" })
-								@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaInicio", @required = "required" })
-								@Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
-							</div>
-
-							<div class="col-md-6 mb-3">
-								@Html.LabelFor(model => model.FechaFin, "Fecha de Fin", new { @class = "form-label fw-bold" })
-								@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaFin", @required = "required" })
-								@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label class="form-label fw-bold">Días Solicitados</label>
-								<input type="text" id="DiasSolicitados" class="form-control" readonly />
-								<small class="text-muted">Se calcula automáticamente</small>
-							</div>
-
-							<div class="col-md-6 mb-3">
-								<label class="form-label fw-bold">Días Disponibles</label>
-								<input type="text" id="DiasDisponibles" class="form-control" readonly value="--" />
-								<small class="text-muted" id="disponibilidadMsg">Seleccione fechas para verificar</small>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-12 mb-3">
-								@Html.LabelFor(model => model.Observaciones, "Observaciones", new { @class = "form-label fw-bold" })
-								@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional..." })
-								@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
-							</div>
-						</div>
-
-						<hr />
-
-						<div class="d-flex justify-content-between">
-							<a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
-							<button type="submit" id="btnGuardar" class="btn btn-success" disabled>Guardar Solicitud</button>
-						</div>
-					}
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.EmpleadoID, "Empleado", new { @class = "form-label required" })
+					@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", id = "EmpleadoID", required = "required" })
+					@Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
 				</div>
+
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.TipoPermisoID, "Tipo de Permiso", new { @class = "form-label required" })
+					@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", id = "TipoPermisoID", required = "required" })
+					@Html.ValidationMessageFor(model => model.TipoPermisoID, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio", new { @class = "form-label required" })
+					@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", id = "FechaInicio", required = "required" })
+					@Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.FechaFin, "Fecha de Fin", new { @class = "form-label required" })
+					@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", id = "FechaFin", required = "required" })
+					@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="row mb-4">
+				<div class="col-md-4">
+					<div class="stat-card">
+						<div class="stat-icon">
+							<i class="fas fa-calendar-day text-success"></i>
+						</div>
+						<h6 class="text-muted mb-1">Días Solicitados</h6>
+						<h3 class="mb-0 font-weight-bold" id="diasSolicitados">0</h3>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="stat-card">
+						<div class="stat-icon">
+							<i class="fas fa-clock text-warning"></i>
+						</div>
+						<h6 class="text-muted mb-1">Días Usados</h6>
+						<h3 class="mb-0 font-weight-bold" id="diasUsados">0</h3>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="stat-card">
+						<div class="stat-icon">
+							<i class="fas fa-chart-line text-primary"></i>
+						</div>
+						<h6 class="text-muted mb-1">Días Disponibles</h6>
+						<h3 class="mb-0 font-weight-bold" id="diasDisponibles">--</h3>
+					</div>
+				</div>
+			</div>
+
+			<div id="mensajeDisponibilidad" class="alert" style="display: none;"></div>
+
+			<div class="mb-3">
+				@Html.LabelFor(model => model.Observaciones, "Observaciones", new { @class = "form-label" })
+				@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", rows = 4, placeholder = "Describa el motivo del permiso...", id = "Observaciones" })
+				@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+			</div>
+
+			<hr />
+
+			<div class="d-flex justify-content-between align-items-center">
+				<a href="@Url.Action("Index")" class="btn btn-secondary btn-cancel btn-lg">
+					<i class="fas fa-arrow-left"></i> Cancelar
+				</a>
+				<button type="submit" id="btnGuardar" class="btn btn-success btn-save btn-lg" disabled>
+					<i class="fas fa-save"></i> Guardar Solicitud
+				</button>
 			</div>
 		</div>
 	</div>
-</div>
+}
 
 @section Scripts {
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 	<script>
         $(document).ready(function() {
+            var limites = {
+                1: { max: 15, nombre: "Vacaciones" },
+                2: { max: 3, nombre: "Enfermedad" },
+                3: { max: 3, nombre: "Personal" },
+                4: { max: 5, nombre: "Capacitación" },
+                5: { max: 90, nombre: "Maternidad/Paternidad" }
+            };
+            var limitesDefault = { max: 10, nombre: "General" };
+            var timeoutId;
+
+            function getLimitePorTipo(tipoId) {
+                return limites[tipoId] || limitesDefault;
+            }
+
+            function actualizarInfoLimites() {
+                var tipoId = $('#TipoPermisoID').val();
+                if (tipoId) {
+                    var limite = getLimitePorTipo(parseInt(tipoId));
+                    $('#infoLimiteTexto').html(`<strong>${limite.nombre}:</strong> Máximo ${limite.max} días por año`);
+                } else {
+                    $('#infoLimiteTexto').html('Seleccione un tipo de permiso para ver sus límites');
+                }
+            }
+
             function calcularDias() {
                 var fechaInicio = $('#FechaInicio').val();
                 var fechaFin = $('#FechaFin').val();
-
                 if (fechaInicio && fechaFin) {
                     var inicio = new Date(fechaInicio);
                     var fin = new Date(fechaFin);
-
                     if (fin >= inicio) {
-                        var diffTime = Math.abs(fin - inicio);
-                        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                        $('#DiasSolicitados').val(diffDays);
+                        var diffDays = Math.ceil((fin - inicio) / (1000 * 60 * 60 * 24)) + 1;
+                        $('#diasSolicitados').text(diffDays);
                         return diffDays;
                     } else {
-                        $('#DiasSolicitados').val('');
-                        $('#mensajeInfo').show().text('La fecha de fin debe ser mayor o igual a la fecha de inicio').removeClass('alert-info').addClass('alert-warning');
+                        $('#diasSolicitados').text('0');
                         return 0;
                     }
                 }
+                $('#diasSolicitados').text('0');
                 return 0;
             }
 
             function verificarDisponibilidad() {
-                var empleadoId = $('#EmpleadoID').val();
-                var tipoPermisoId = $('#TipoPermisoID').val();
-                var fechaInicio = $('#FechaInicio').val();
-                var fechaFin = $('#FechaFin').val();
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function() {
+                    var empleadoId = $('#EmpleadoID').val();
+                    var tipoPermisoId = $('#TipoPermisoID').val();
+                    var fechaInicio = $('#FechaInicio').val();
+                    var fechaFin = $('#FechaFin').val();
 
-                if (empleadoId && tipoPermisoId && fechaInicio && fechaFin) {
-                    var diasSolicitados = calcularDias();
+                    if (empleadoId && tipoPermisoId && fechaInicio && fechaFin) {
+                        var diasSolicitados = calcularDias();
+                        if (diasSolicitados > 0) {
+                            $('#diasDisponibles').text('...');
+                            $('#mensajeDisponibilidad').hide();
+                            $('#btnGuardar').prop('disabled', true);
 
-                    if (diasSolicitados > 0) {
-                        $('#DiasDisponibles').val('Verificando...');
-                        $('#btnGuardar').prop('disabled', true);
+                            $.ajax({
+                                url: '@Url.Action("VerificarDisponibilidad", "Permisos")',
+                                type: 'GET',
+                                data: { empleadoId: empleadoId, tipoPermisoId: tipoPermisoId, inicio: fechaInicio, fin: fechaFin },
+                                dataType: 'json',
+                                success: function(response) {
+                                    $('#diasUsados').text(response.diasUsados);
+                                    $('#diasDisponibles').text(response.diasDisponibles);
 
-                        $.ajax({
-                            url: '@Url.Action("VerificarDiasDisponibles", "Permisos")',
-                            type: 'GET',
-                            data: {
-                                empleadoId: empleadoId,
-                                tipoPermisoId: tipoPermisoId,
-                                inicio: fechaInicio,
-                                fin: fechaFin
-                            },
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.disponible) {
-                                    $('#DiasDisponibles').val(response.diasDisponibles + ' días');
-                                    $('#disponibilidadMsg').html('✓ Días disponibles: ' + response.diasDisponibles + ' de ' + response.maximoPermitido).css('color', 'green');
-                                    $('#mensajeInfo').hide();
-                                    $('#btnGuardar').prop('disabled', false);
-                                } else {
-                                    $('#DiasDisponibles').val('0 días');
-                                    $('#disponibilidadMsg').html('✗ No hay suficientes días. Máximo: ' + response.maximoPermitido + ' días, Usados: ' + response.diasUsados).css('color', 'red');
-                                    $('#mensajeInfo').show().text('No tiene suficientes días disponibles para este tipo de permiso').removeClass('alert-info').addClass('alert-warning');
+                                    if (response.disponible) {
+                                        $('#mensajeDisponibilidad')
+                                            .removeClass('alert-danger alert-warning')
+                                            .addClass('alert-success')
+                                            .html(`<i class="fas fa-check-circle"></i> <strong>¡Días disponibles!</strong> Puede solicitar ${diasSolicitados} días. Le quedan ${response.diasDisponibles} días de ${response.maximoPermitido}.`)
+                                            .slideDown(300);
+                                        $('#btnGuardar').prop('disabled', false);
+                                    } else {
+                                        $('#mensajeDisponibilidad')
+                                            .removeClass('alert-success')
+                                            .addClass('alert-danger')
+                                            .html(`<i class="fas fa-exclamation-triangle"></i> <strong>No hay suficientes días disponibles</strong><br>Máximo: ${response.maximoPermitido} días | Usados: ${response.diasUsados} | Disponibles: ${response.diasDisponibles}`)
+                                            .slideDown(300);
+                                        $('#btnGuardar').prop('disabled', true);
+                                    }
+                                },
+                                error: function() {
+                                    $('#diasDisponibles').text('Error');
+                                    $('#mensajeDisponibilidad')
+                                        .removeClass('alert-success')
+                                        .addClass('alert-warning')
+                                        .html('<i class="fas fa-exclamation-triangle"></i> Error al verificar disponibilidad')
+                                        .slideDown(300);
                                     $('#btnGuardar').prop('disabled', true);
                                 }
-                            },
-                            error: function() {
-                                $('#DiasDisponibles').val('Error');
-                                $('#disponibilidadMsg').text('Error al verificar disponibilidad').css('color', 'red');
-                            }
-                        });
+                            });
+                        }
+                    } else {
+                        $('#mensajeDisponibilidad').hide();
+                        $('#btnGuardar').prop('disabled', true);
                     }
-                } else {
-                    $('#DiasDisponibles').val('--');
-                    $('#btnGuardar').prop('disabled', true);
-                }
+                }, 500);
             }
+
+            // Eventos
+            $('#EmpleadoID, #TipoPermisoID').on('change', function() {
+                verificarDisponibilidad();
+            });
 
             $('#FechaInicio, #FechaFin').on('change', function() {
                 calcularDias();
                 verificarDisponibilidad();
             });
 
-            $('#EmpleadoID, #TipoPermisoID').on('change', function() {
-                if ($('#FechaInicio').val() && $('#FechaFin').val()) {
-                    verificarDisponibilidad();
+            // Validación de fechas
+            var today = new Date().toISOString().split('T')[0];
+            $('#FechaInicio').attr('min', today);
+
+            $('#FechaInicio').on('change', function() {
+                $('#FechaFin').attr('min', $(this).val());
+                if ($('#FechaFin').val() && $('#FechaFin').val() < $(this).val()) {
+                    $('#FechaFin').val('');
                 }
             });
 
-            $('#formPermiso').on('submit', function(e) {
-                var disponible = $('#DiasDisponibles').val();
-                if (disponible === '0 días' || disponible === '--' || disponible === 'Error') {
-                    e.preventDefault();
-                    alert('No es posible guardar la solicitud porque no hay días suficientes disponibles.');
-                    return false;
-                }
-                return true;
-            });
+            // Inicializar
+            actualizarInfoLimites();
+            $('#TipoPermisoID').on('change', actualizarInfoLimites);
+
+            // Verificar disponibilidad cuando se selecciona empleado y tipo
+            if ($('#EmpleadoID').val() && $('#TipoPermisoID').val()) {
+                verificarDisponibilidad();
+            }
         });
 	</script>
 }

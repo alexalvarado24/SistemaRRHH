@@ -26,10 +26,10 @@
 
 						<div class="alert alert-secondary">
 							<i class="fas fa-info-circle"></i> <strong>Estado actual:</strong>
-							<span class="badge @(Model.Estado == "Aprobado" ? "bg-success" : (Model.Estado == "Rechazado" ? "bg-danger" : "bg-warning"))">
-								@Model.Estado
+							<span class="badge @(Model.Estado == "APROBADO" ? "bg-success" : (Model.Estado == "RECHAZADO" ? "bg-danger" : "bg-warning"))">
+								@(Model.Estado == "APROBADO" ? "Aprobado" : (Model.Estado == "RECHAZADO" ? "Rechazado" : "Pendiente"))
 							</span>
-							@if (Model.Estado != "Pendiente")
+							@if (Model.Estado != "PENDIENTE")
 							{
 								<span class="text-danger d-block mt-1">
 									<i class="fas fa-lock"></i> Las solicitudes aprobadas o rechazadas no pueden modificarse.
@@ -40,44 +40,60 @@
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								@Html.LabelFor(model => model.EmpleadoID, "Empleado", new { @class = "form-label fw-bold" })
-								@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", @id = "EmpleadoID", @disabled = Model.Estado != "PENDIENTE" })
-								@Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
-								@if (Model.Estado != "PENDIENTE")
+								@if (Model.Estado == "PENDIENTE")
 								{
+									@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", @id = "EmpleadoID", required = "required" })
+								}
+								else
+								{
+									@Html.DropDownList("EmpleadoID", null, "Seleccione un empleado", new { @class = "form-control", @id = "EmpleadoID", disabled = "disabled" })
 									@Html.HiddenFor(model => model.EmpleadoID)
 								}
+								@Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
 							</div>
 
 							<div class="col-md-6 mb-3">
 								@Html.LabelFor(model => model.TipoPermisoID, "Tipo de Permiso", new { @class = "form-label fw-bold" })
-								@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", @id = "TipoPermisoID", @disabled = Model.Estado != "PENDIENTE" })
-								@Html.ValidationMessageFor(model => model.TipoPermisoID, "", new { @class = "text-danger" })
-								@if (Model.Estado != "PENDIENTE")
+								@if (Model.Estado == "PENDIENTE")
 								{
+									@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", @id = "TipoPermisoID", required = "required" })
+								}
+								else
+								{
+									@Html.DropDownList("TipoPermisoID", null, "Seleccione un tipo", new { @class = "form-control", @id = "TipoPermisoID", disabled = "disabled" })
 									@Html.HiddenFor(model => model.TipoPermisoID)
 								}
+								@Html.ValidationMessageFor(model => model.TipoPermisoID, "", new { @class = "text-danger" })
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								@Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio", new { @class = "form-label fw-bold" })
-								@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaInicio", @disabled = Model.Estado != "PENDIENTE" })
-								@Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
-								@if (Model.Estado != "PENDIENTE")
+								@if (Model.Estado == "PENDIENTE")
 								{
+									@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @id = "FechaInicio", required = "required" })
+								}
+								else
+								{
+									@Html.TextBoxFor(model => model.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @id = "FechaInicio", disabled = "disabled" })
 									@Html.HiddenFor(model => model.FechaInicio)
 								}
+								@Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
 							</div>
 
 							<div class="col-md-6 mb-3">
 								@Html.LabelFor(model => model.FechaFin, "Fecha de Fin", new { @class = "form-label fw-bold" })
-								@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @id = "FechaFin", @disabled = Model.Estado != "PENDIENTE" })
-								@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
-								@if (Model.Estado != "PENDIENTE")
+								@if (Model.Estado == "PENDIENTE")
 								{
+									@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @id = "FechaFin", required = "required" })
+								}
+								else
+								{
+									@Html.TextBoxFor(model => model.FechaFin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @id = "FechaFin", disabled = "disabled" })
 									@Html.HiddenFor(model => model.FechaFin)
 								}
+								@Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
 							</div>
 						</div>
 
@@ -107,12 +123,15 @@
 						<div class="row">
 							<div class="col-md-12 mb-3">
 								@Html.LabelFor(model => model.Observaciones, "Observaciones", new { @class = "form-label fw-bold" })
-								@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional...", @disabled = Model.Estado != "PENDIENTE" })
-								@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
-								@if (Model.Estado != "PENDIENTE" && !string.IsNullOrEmpty(Model.Observaciones))
+								@if (Model.Estado == "PENDIENTE")
 								{
-									<small class="text-muted">Nota: Las observaciones no pueden modificarse una vez aprobado/rechazado.</small>
+									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional...", @id = "Observaciones" })
 								}
+								else
+								{
+									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional...", @id = "Observaciones", disabled = "disabled" })
+								}
+								@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
 							</div>
 						</div>
 
@@ -124,7 +143,7 @@
 							</a>
 							@if (Model.Estado == "PENDIENTE")
 							{
-								<button type="submit" id="btnGuardar" class="btn btn-primary" disabled>
+								<button type="submit" id="btnGuardar" class="btn btn-primary">
 									<i class="fas fa-save"></i> Actualizar Solicitud
 								</button>
 							}
@@ -169,6 +188,7 @@
                         return 0;
                     }
                 }
+                $('#DiasSolicitados').val('0');
                 return 0;
             }
 
@@ -187,7 +207,7 @@
                         $('#btnGuardar').prop('disabled', true);
 
                         $.ajax({
-                            url: '@Url.Action("VerificarDiasDisponibles", "Permisos")',
+                            url: '@Url.Action("VerificarDisponibilidad", "Permisos")',
                             type: 'GET',
                             data: {
                                 empleadoId: empleadoId,
@@ -212,9 +232,13 @@
                             error: function() {
                                 $('#DiasDisponibles').val('Error');
                                 $('#disponibilidadMsg').html('<span class="text-danger">Error al verificar disponibilidad</span>');
+                                $('#btnGuardar').prop('disabled', true);
                             }
                         });
                     }
+                } else {
+                    $('#DiasDisponibles').val('--');
+                    $('#btnGuardar').prop('disabled', true);
                 }
             }
 
@@ -236,7 +260,7 @@
 
             // Validación antes de enviar
             $('#formPermiso').on('submit', function(e) {
-                if (estadoOriginal !== 'Pendiente') {
+                if (estadoOriginal !== 'PENDIENTE') {
                     e.preventDefault();
                     alert('No se pueden modificar solicitudes aprobadas o rechazadas.');
                     return false;

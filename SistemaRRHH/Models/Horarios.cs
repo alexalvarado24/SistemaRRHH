@@ -23,6 +23,10 @@ namespace SistemaRRHH.Models
         public int HorarioID { get; set; }
         public System.TimeSpan HoraEntrada { get; set; }
         public System.TimeSpan HoraSalida { get; set; }
+        public string Nombre { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AsignacionHorarios> AsignacionHorarios { get; set; }

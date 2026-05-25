@@ -23,6 +23,10 @@ namespace SistemaRRHH.Models
         public int TipoPermisoID { get; set; }
         public string NombrePermiso { get; set; }
         public string Descripcion { get; set; }
+        public Nullable<int> DiasMaximos { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Permisos> Permisos { get; set; }

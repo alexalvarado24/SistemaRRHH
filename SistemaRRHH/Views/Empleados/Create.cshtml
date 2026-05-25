@@ -1,0 +1,223 @@
+﻿@model SistemaRRHH.Models.Empleados
+
+@{
+	ViewBag.Title = "Nuevo Empleado";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+	.card {
+		border-radius: 15px;
+		border: none;
+		box-shadow: 0 0 20px rgba(0,0,0,0.1);
+		transition: transform 0.3s, box-shadow 0.3s;
+	}
+
+		.card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+		}
+
+	.card-header {
+		border-radius: 15px 15px 0 0 !important;
+		padding: 1.5rem;
+	}
+
+	.form-label {
+		font-weight: 600;
+		color: #333;
+		margin-bottom: 0.5rem;
+	}
+
+	.required:after {
+		content: " *";
+		color: #dc3545;
+		font-weight: bold;
+	}
+
+	.btn-save {
+		background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+		border: none;
+		padding: 12px 35px;
+		font-weight: 600;
+		transition: all 0.3s;
+	}
+
+		.btn-save:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+		}
+
+	.btn-cancel {
+		background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+		border: none;
+		padding: 12px 35px;
+		font-weight: 600;
+		transition: all 0.3s;
+	}
+
+		.btn-cancel:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+		}
+
+	select.form-control:focus, input.form-control:focus, textarea.form-control:focus {
+		border-color: #28a745;
+		box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+	}
+</style>
+
+<h2 class="mb-4">
+	<i class="fas fa-user-plus text-success"></i> Nuevo Empleado
+</h2>
+
+@if (TempData["Success"] != null)
+{
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<i class="fas fa-check-circle"></i> @TempData["Success"]
+		<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+	</div>
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="card">
+		<div class="card-header bg-success text-white">
+			<h5 class="mb-0">
+				<i class="fas fa-info-circle"></i> Información del Empleado
+			</h5>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.Nombre, new { @class = "form-label required" })
+					@Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ingrese el nombre", required = "required" })
+					@Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.Apellido, new { @class = "form-label required" })
+					@Html.TextBoxFor(model => model.Apellido, new { @class = "form-control", placeholder = "Ingrese el apellido", required = "required" })
+					@Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.Email, new { @class = "form-label required" })
+					@Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", placeholder = "correo@empresa.com", required = "required" })
+					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.Telefono, new { @class = "form-label" })
+					@Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", placeholder = "XXXX-XXXX" })
+					@Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 mb-3">
+					@Html.LabelFor(model => model.FechaNacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
+					@Html.TextBoxFor(model => model.FechaNacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+					@Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-4 mb-3">
+					@Html.LabelFor(model => model.CargoID, "Cargo", new { @class = "form-label required" })
+					@Html.DropDownList("CargoID", null, "Seleccione un cargo", new { @class = "form-control", required = "required", id = "CargoID" })
+					@Html.ValidationMessageFor(model => model.CargoID, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-4 mb-3">
+					<label class="form-label">Horario</label>
+					<select id="HorarioID" name="HorarioID" class="form-control">
+						<option value="">Seleccione un horario</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.FechaIngreso, "Fecha de Ingreso", new { @class = "form-label" })
+					@Html.TextBoxFor(model => model.FechaIngreso, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+					@Html.ValidationMessageFor(model => model.FechaIngreso, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-6 mb-3">
+					@Html.LabelFor(model => model.FechaSalida, "Fecha de Salida", new { @class = "form-label" })
+					@Html.TextBoxFor(model => model.FechaSalida, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+					@Html.ValidationMessageFor(model => model.FechaSalida, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="mb-3">
+				@Html.LabelFor(model => model.Direccion, new { @class = "form-label" })
+				@Html.TextAreaFor(model => model.Direccion, new { @class = "form-control", rows = 2, placeholder = "Dirección completa" })
+				@Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+			</div>
+
+			<div class="mb-3">
+				@Html.LabelFor(model => model.Observaciones, new { @class = "form-label" })
+				@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", rows = 2, placeholder = "Observaciones adicionales..." })
+				@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+			</div>
+
+			<div class="mb-3">
+				@Html.LabelFor(model => model.HistorialLaboral, "Historial Laboral", new { @class = "form-label" })
+				@Html.TextAreaFor(model => model.HistorialLaboral, new { @class = "form-control", rows = 3, placeholder = "Experiencia previa, logros, etc." })
+				@Html.ValidationMessageFor(model => model.HistorialLaboral, "", new { @class = "text-danger" })
+			</div>
+
+			<hr />
+
+			<div class="d-flex justify-content-between align-items-center">
+				<a href="@Url.Action("Index")" class="btn btn-secondary btn-cancel btn-lg">
+					<i class="fas fa-arrow-left"></i> Cancelar
+				</a>
+				<button type="submit" id="btnGuardar" class="btn btn-success btn-save btn-lg">
+					<i class="fas fa-save"></i> Guardar Empleado
+				</button>
+			</div>
+		</div>
+	</div>
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+	<script>
+        $(document).ready(function() {
+            cargarHorarios();
+
+            $('#FechaIngreso, #FechaSalida').on('change', function() {
+                var ingreso = $('#FechaIngreso').val();
+                var salida = $('#FechaSalida').val();
+                if (ingreso && salida && salida < ingreso) {
+                    alert('La fecha de salida no puede ser menor a la fecha de ingreso');
+                    $('#FechaSalida').val('');
+                }
+            });
+        });
+
+        function cargarHorarios() {
+            $.ajax({
+                url: '@Url.Action("GetHorarios", "Empleados")',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var options = '<option value="">Seleccione un horario</option>';
+                    $.each(data, function(i, h) {
+                        options += `<option value="${h.HorarioID}">${h.Nombre} (${h.HoraEntrada} - ${h.HoraSalida})</option>`;
+                    });
+                    $('#HorarioID').html(options);
+                },
+                error: function() {
+                    console.log('Error al cargar horarios');
+                }
+            });
+        }
+	</script>
+}

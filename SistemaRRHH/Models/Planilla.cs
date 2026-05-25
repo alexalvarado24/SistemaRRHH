@@ -23,6 +23,10 @@ namespace SistemaRRHH.Models
         public Nullable<decimal> ISSS { get; set; }
         public Nullable<decimal> Renta { get; set; }
         public Nullable<decimal> OtrasDeducciones { get; set; }
+        public string Estado { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
         public virtual Empleados Empleados { get; set; }
     }

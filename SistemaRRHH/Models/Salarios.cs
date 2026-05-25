@@ -19,7 +19,9 @@ namespace SistemaRRHH.Models
         public Nullable<decimal> Monto { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }
         public Nullable<System.DateTime> FechaFin { get; set; }
-        public Nullable<bool> EsActivo { get; set; }
+        public bool Activo { get; set; }
+        public System.DateTime FechaCreacion { get; set; }
+        public Nullable<System.DateTime> FechaModificacion { get; set; }
     
         public virtual Empleados Empleados { get; set; }
     }
