@@ -8,8 +8,8 @@ using SistemaRRHH.Helpers;
 namespace SistemaRRHH.Controllers
 {
 	/// <summary>
-	/// Controlador para la generación de reportes con Crystal Reports
-	/// Maneja la visualización y descarga de reportes PDF de empleados
+	/// Controlador para la generacion de reportes con Crystal Reports
+	/// Maneja la visualizacion y descarga de reportes PDF de empleados
 	/// </summary>
 	public class ReporteController : Controller
 	{
@@ -31,7 +31,7 @@ namespace SistemaRRHH.Controllers
 		/// Genera y muestra el reporte PDF en el navegador (para incrustar en iframe)
 		/// Solo incluye empleados ACTIVOS (Activo = true)
 		/// </summary>
-		/// <returns>Archivo PDF para visualización en navegador</returns>
+		/// <returns>Archivo PDF para visualizacion en navegador</returns>
 		public ActionResult VerEmpleados()
 		{
 			try
@@ -48,10 +48,10 @@ namespace SistemaRRHH.Controllers
 				ReportDocument reporte = new ReportDocument();
 				reporte.Load(reportPath);
 
-				// ========== 3. CONFIGURAR CONEXIÓN A BASE DE DATOS ==========
+				// ========== 3. CONFIGURAR CONEXION A BASE DE DATOS ==========
 				var coninfo = ReportesConexion.GetConexion();
 
-				// Aplica la información de conexión a cada tabla del reporte
+				// Aplica la informacion de conexion a cada tabla del reporte
 				foreach (Table table in reporte.Database.Tables)
 				{
 					table.LogOnInfo.ConnectionInfo = coninfo;
@@ -67,12 +67,12 @@ namespace SistemaRRHH.Controllers
 				Stream stream = reporte.ExportToStream(ExportFormatType.PortableDocFormat);
 				stream.Seek(0, SeekOrigin.Begin);
 
-				// Retorna el PDF para visualización en navegador (NO descarga)
+				// Retorna el PDF para visualizacion en navegador (NO descarga)
 				return File(stream, "application/pdf");
 			}
 			catch (Exception ex)
 			{
-				// Si ocurre algún error, muestra el mensaje y el stack trace para depuración
+				// Si ocurre algun error, muestra el mensaje y el stack trace para depuracion
 				return Content("Error: " + ex.Message + "\n\nDetalle: " + ex.StackTrace);
 			}
 		}
@@ -101,7 +101,7 @@ namespace SistemaRRHH.Controllers
 				ReportDocument reporte = new ReportDocument();
 				reporte.Load(reportPath);
 
-				// ========== 3. CONFIGURAR CONEXIÓN A BASE DE DATOS ==========
+				// ========== 3. CONFIGURAR CONEXION A BASE DE DATOS ==========
 				var coninfo = ReportesConexion.GetConexion();
 
 				foreach (Table table in reporte.Database.Tables)
@@ -123,7 +123,7 @@ namespace SistemaRRHH.Controllers
 				stream.Read(bytes, 0, (int)stream.Length);
 
 				// ========== 6. FORZAR DESCARGA ==========
-				// El nombre del archivo incluye fecha y hora para evitar caché
+				// El nombre del archivo incluye fecha y hora para evitar cache
 				return File(bytes, "application/pdf", $"ReporteEmpleados_{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
 			}
 			catch (Exception ex)

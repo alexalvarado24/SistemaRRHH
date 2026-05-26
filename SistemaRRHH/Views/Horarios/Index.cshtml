@@ -28,7 +28,7 @@
     }
 </style>
 
-<h2>Gestión de Horarios</h2>
+<h2>Gestion de Horarios</h2>
 
 @if (TempData["Success"] != null)
 {
@@ -142,7 +142,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Descripción del Horario</th>
+                                <th>Descripcion del Horario</th>
                                 <th>Hora Entrada</th>
                                 <th>Hora Salida</th>
                                 <th>Estado</th>
@@ -179,7 +179,7 @@
         function toggleHorario(id, nombre, activo) {
             Swal.fire({
                 title: activo ? '¿Desactivar horario?' : '¿Activar horario?',
-                text: `El horario "${nombre}" cambiará de estado operativo.`,
+                text: `El horario "${nombre}" cambiara de estado operativo.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: activo ? '#d33' : '#28a745',

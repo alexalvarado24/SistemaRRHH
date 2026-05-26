@@ -94,7 +94,7 @@ namespace SistemaRRHH.Controllers
             }
             else
             {
-                TempData["Error"] = "El formato de las horas de entrada o salida no es válido.";
+                TempData["Error"] = "El formato de las horas de entrada o salida no es valido.";
             }
 
             return View(nuevoHorario);
@@ -144,7 +144,7 @@ namespace SistemaRRHH.Controllers
             }
             else
             {
-                TempData["Error"] = "El formato de las horas ingresadas es inválido.";
+                TempData["Error"] = "El formato de las horas ingresadas es invalido.";
             }
 
             return View(horarioExistente);
@@ -167,7 +167,7 @@ namespace SistemaRRHH.Controllers
                 await db.SaveChangesAsync();
 
                 string accion = horario.Activo ? "activado" : "desactivado";
-                return Json(new { success = true, message = $"El horario fue {accion} con éxito." });
+                return Json(new { success = true, message = $"El horario fue {accion} con exito." });
             }
             catch (Exception ex)
             {

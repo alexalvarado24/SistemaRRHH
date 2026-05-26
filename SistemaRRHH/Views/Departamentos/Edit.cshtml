@@ -1,0 +1,52 @@
+﻿@model SistemaRRHH.Models.Departamentos
+
+@{
+    ViewBag.Title = "Modificar Departamento";
+}
+
+<h2 class="mb-4"><i class="fas fa-edit text-warning"></i> Modificar Departamento #@Model.DepartamentoID</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.DepartamentoID)
+    @Html.HiddenFor(model => model.Activo)
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-white">
+            <h5 class="mb-0"><i class="fas fa-building"></i> Detalles del Departamento</h5>
+        </div>
+        <div class="card-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+                </div>
+            }
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Nombre, "Nombre del Departamento *", new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Descripcion, "Descripcion del Departamento", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index")" class="btn btn-secondary px-4">
+                    <i class="fas fa-arrow-left"></i> Cancelar
+                </a>
+                <button type="submit" class="btn btn-warning px-4 text-white fw-bold">
+                    <i class="fas fa-save"></i> Actualizar Departamento
+                </button>
+            </div>
+        </div>
+    </div>
+}

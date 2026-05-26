@@ -1,0 +1,56 @@
+﻿@model SistemaRRHH.Models.Departamentos
+
+@{
+    ViewBag.Title = "Nuevo Departamento";
+}
+
+<h2 class="mb-4"><i class="fas fa-building text-success"></i> Registrar Nuevo Departamento</h2>
+
+@using (Html.BeginForm("Create", "Departamentos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0"><i class="fas fa-plus-square"></i> Datos del Departamento</h5>
+        </div>
+        <div class="card-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Nombre, "Nombre del Departamento *", new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = "Ej. Recursos Humanos, Finanzas, IT...", required = "required" })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Descripcion, "Descripcion del Departamento", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = "3", placeholder = "Escriba brevemente las funciones y responsabilidades de este departamento..." })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index")" class="btn btn-secondary px-4">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+                <button type="submit" class="btn btn-success px-4">
+                    <i class="fas fa-save"></i> Registrar Departamento
+                </button>
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewBag.Title = "Inicio - Sistema de RRHH";
 }
 
@@ -19,19 +19,19 @@
     <div class="row mb-5">
         <div class="col-md-12">
             <div class="p-5 bg-dark text-white rounded-3 shadow-sm">
-                <h1 class="display-5 fw-bold">Bienvenido al Sistema de Gestión de RRHH</h1>
-                <p class="col-md-8 fs-4">Plataforma centralizada para la administración de expedientes de empleados, solicitudes de permisos, asignación de horarios y control de planillas.</p>
+                <h1 class="display-5 fw-bold">Bienvenido al Sistema de Gestion de RRHH</h1>
+                <p class="col-md-8 fs-4">Plataforma centralizada para la administracion de expedientes de empleados, solicitudes de permisos, asignacion de horarios y control de planillas.</p>
                 <p class="text-muted mb-0"><i class="far fa-calendar-alt"></i> Fecha de acceso: @DateTime.Now.ToString("dd/MM/yyyy")</p>
             </div>
         </div>
     </div>
 
-    <h3 class="mb-4 text-secondary"><i class="fas fa-th-large"></i> Accesos Directos a Módulos</h3>
+    <h3 class="mb-4 text-secondary"><i class="fas fa-th-large"></i> Accesos Directos a Modulos</h3>
     <div class="row g-4 mb-5">
         <div class="col-md-4">
             <div class="card h-100 shadow-sm quick-link-card">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title fw-bold text-primary"><i class="fa fa-id-badge"></i> Gestión de Empleados</h5>
+                    <h5 class="card-title fw-bold text-primary"><i class="fa fa-id-badge"></i> Gestion de Empleados</h5>
                     <p class="card-text text-muted flex-grow-1">Permite registrar nuevos colaboradores, actualizar expedientes, asignar cargos y visualizar salarios base e historiales.</p>
                     <a href="@Url.Action("Index", "Empleados")" class="btn btn-outline-primary w-100 mt-3">Ir a Empleados &raquo;</a>
                 </div>
@@ -42,7 +42,7 @@
             <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #28a745;">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-bold text-success"><i class="fa fa-calendar-check"></i> Solicitudes de Permiso</h5>
-                    <p class="card-text text-muted flex-grow-1">Administración de licencias por enfermedad, vacaciones, maternidad y asuntos personales. Aprobación y rechazo en tiempo real.</p>
+                    <p class="card-text text-muted flex-grow-1">Administracion de licencias por enfermedad, vacaciones, maternidad y asuntos personales. Aprobacion y rechazo en tiempo real.</p>
                     <a href="@Url.Action("Index", "Permisos")" class="btn btn-outline-success w-100 mt-3">Ir a Permisos &raquo;</a>
                 </div>
             </div>
@@ -52,28 +52,48 @@
             <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #17a2b8;">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-bold text-info"><i class="fa fa-calculator"></i> Control de Planillas</h5>
-                    <p class="card-text text-muted flex-grow-1">Módulo para el cálculo automático de salarios netos aplicando deducciones legales de ley (AFP, ISSS, Renta) e ingresos complementarios.</p>
+                    <p class="card-text text-muted flex-grow-1">Modulo para el calculo automatico de salarios netos aplicando deducciones legales de ley (AFP, ISSS, Renta) e ingresos complementarios.</p>
                     <a href="@Url.Action("Index", "Planilla")" class="btn btn-outline-info w-100 mt-3">Ir a Planillas &raquo;</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #ffc107;">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title fw-bold text-warning"><i class="fa fa-clock"></i> Asignación de Horarios</h5>
-                    <p class="card-text text-muted flex-grow-1">Configuración y mantenimiento de turnos de trabajo, horas de entrada y salidas operativas para el personal de la empresa.</p>
+                    <h5 class="card-title fw-bold text-warning"><i class="fa fa-clock"></i> Asignacion de Horarios</h5>
+                    <p class="card-text text-muted flex-grow-1">Configuracion y mantenimiento de turnos de trabajo, horas de entrada y salidas operativas para el personal de la empresa.</p>
                     <a href="@Url.Action("Index", "Horarios")" class="btn btn-outline-warning w-100 mt-3">Ir a Horarios &raquo;</a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #6c757d;">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-bold text-secondary"><i class="fa fa-briefcase"></i> Estructura de Cargos</h5>
-                    <p class="card-text text-muted flex-grow-1">Catálogo institucional de puestos, plazas funcionales disponibles y su correspondiente distribución por departamentos.</p>
+                    <p class="card-text text-muted flex-grow-1">Catalogo institucional de puestos, plazas funcionales disponibles y su correspondiente distribucion por departamentos.</p>
                     <a href="@Url.Action("Index", "Cargos")" class="btn btn-outline-secondary w-100 mt-3">Ir a Cargos &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #e83e8c;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold" style="color: #e83e8c;"><i class="fa fa-building"></i> Departamentos</h5>
+                    <p class="card-text text-muted flex-grow-1">Configuracion de las diferentes areas o departamentos que estructuran funcionalmente la organizacion.</p>
+                    <a href="@Url.Action("Index", "Departamentos")" class="btn w-100 mt-3" style="border-color: #e83e8c; color: #e83e8c;">Ir a Departamentos &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #fd7e14;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold" style="color: #fd7e14;"><i class="fa fa-clipboard-list"></i> Tipos de Permisos</h5>
+                    <p class="card-text text-muted flex-grow-1">Mantenimiento del catalogo maestro de tipos de ausencias, licencias y dias maximos otorgables a empleados.</p>
+                    <a href="@Url.Action("Index", "CatalogoPermisos")" class="btn w-100 mt-3" style="border-color: #fd7e14; color: #fd7e14;">Ir a Tipos de Permisos &raquo;</a>
                 </div>
             </div>
         </div>

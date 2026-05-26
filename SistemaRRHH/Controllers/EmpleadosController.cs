@@ -8,8 +8,8 @@ using System.Collections.Generic;
 namespace SistemaRRHH.Controllers
 {
 	/// <summary>
-	/// Controlador para la gestión de empleados
-	/// Maneja operaciones CRUD, activación/desactivación, asignación de horarios y salarios
+	/// Controlador para la gestion de empleados
+	/// Maneja operaciones CRUD, activacion/desactivacion, asignacion de horarios y salarios
 	/// </summary>
 	public class EmpleadosController : Controller
 	{
@@ -18,7 +18,7 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Empleados
-		/// Vista principal que carga el listado de empleados vía AJAX
+		/// Vista principal que carga el listado de empleados via AJAX
 		/// </summary>
 		/// <returns>Vista Index.cshtml</returns>
 		public ActionResult Index()
@@ -33,7 +33,7 @@ namespace SistemaRRHH.Controllers
 		/// <returns>Vista Create.cshtml con dropdown de cargos</returns>
 		public ActionResult Create()
 		{
-			// Carga los cargos activos en un dropdown para selección
+			// Carga los cargos activos en un dropdown para seleccion
 			ViewBag.CargoID = new SelectList(db.Cargos.Where(c => c.Activo == true), "CargoID", "NombreCargo");
 			return View();
 		}
@@ -43,7 +43,7 @@ namespace SistemaRRHH.Controllers
 		/// Guarda un nuevo empleado en la base de datos
 		/// </summary>
 		/// <param name="form">Formulario con los datos del empleado</param>
-		/// <returns>Redirección al Index si es exitoso, o vuelve al formulario si hay error</returns>
+		/// <returns>Redireccion al Index si es exitoso, o vuelve al formulario si hay error</returns>
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(FormCollection form)
@@ -52,7 +52,7 @@ namespace SistemaRRHH.Controllers
 			{
 				var empleado = new Empleados();
 
-				// Asignación manual de campos del formulario
+				// Asignacion manual de campos del formulario
 				empleado.Nombre = form["Nombre"];
 				empleado.Apellido = form["Apellido"];
 				empleado.Email = form["Email"];
@@ -71,10 +71,10 @@ namespace SistemaRRHH.Controllers
 				db.Empleados.Add(empleado);
 				db.SaveChanges();
 
-				// Asignar salario automáticamente según su cargo
+				// Asignar salario automaticamente segun su cargo
 				AsignarSalarioDesdeTablaSalarios(empleado.EmpleadoID, empleado.CargoID);
 
-				// Asignar horario si se seleccionó uno
+				// Asignar horario si se selecciono uno
 				int horarioId = !string.IsNullOrEmpty(form["HorarioID"]) ? int.Parse(form["HorarioID"]) : 0;
 				if (horarioId > 0)
 				{
@@ -125,7 +125,7 @@ namespace SistemaRRHH.Controllers
 		/// </summary>
 		/// <param name="id">ID del empleado a actualizar</param>
 		/// <param name="form">Formulario con los datos actualizados</param>
-		/// <returns>Redirección al Index si es exitoso</returns>
+		/// <returns>Redireccion al Index si es exitoso</returns>
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(int id, FormCollection form)
@@ -152,7 +152,7 @@ namespace SistemaRRHH.Controllers
 			empleadoExistente.Observaciones = form["Observaciones"];
 			empleadoExistente.HistorialLaboral = form["HistorialLaboral"];
 
-			// Actualizar estado activo según fecha de salida
+			// Actualizar estado activo segun fecha de salida
 			if (empleadoExistente.FechaSalida.HasValue)
 			{
 				empleadoExistente.Activo = false;
@@ -173,7 +173,7 @@ namespace SistemaRRHH.Controllers
 
 			if (nuevoHorarioId > 0)
 			{
-				// Buscar la asignación de horario activa actual
+				// Buscar la asignacion de horario activa actual
 				var asignacionActual = db.AsignacionHorarios
 					.FirstOrDefault(a => a.EmpleadoID == id && a.Activo == true);
 
@@ -181,7 +181,7 @@ namespace SistemaRRHH.Controllers
 				{
 					if (asignacionActual.HorarioID != nuevoHorarioId)
 					{
-						// Si cambió el horario, actualizar el registro existente (NO crear uno nuevo)
+						// Si cambio el horario, actualizar el registro existente (NO crear uno nuevo)
 						asignacionActual.HorarioID = nuevoHorarioId;
 						asignacionActual.FechaModificacion = DateTime.Now;
 						db.Entry(asignacionActual).State = EntityState.Modified;
@@ -190,7 +190,7 @@ namespace SistemaRRHH.Controllers
 				}
 				else
 				{
-					// Si no tiene asignación, crear una nueva
+					// Si no tiene asignacion, crear una nueva
 					var nuevaAsignacion = new AsignacionHorarios
 					{
 						EmpleadoID = id,
@@ -204,7 +204,7 @@ namespace SistemaRRHH.Controllers
 				}
 			}
 
-			// Actualizar salario si cambió de cargo
+			// Actualizar salario si cambio de cargo
 			bool cargoCambiado = cargoAnterior != empleadoExistente.CargoID;
 			if (cargoCambiado)
 			{
@@ -217,7 +217,7 @@ namespace SistemaRRHH.Controllers
 					db.Entry(salarioAnterior).State = EntityState.Modified;
 					db.SaveChanges();
 				}
-				// Asignar nuevo salario según nuevo cargo
+				// Asignar nuevo salario segun nuevo cargo
 				AsignarSalarioDesdeTablaSalarios(id, empleadoExistente.CargoID);
 			}
 
@@ -231,7 +231,7 @@ namespace SistemaRRHH.Controllers
 		/// No elimina el registro, solo cambia el estado Activo
 		/// </summary>
 		/// <param name="id">ID del empleado</param>
-		/// <returns>JSON con resultado de la operación</returns>
+		/// <returns>JSON con resultado de la operacion</returns>
 		[HttpPost]
 		public JsonResult ToggleActivo(int id)
 		{
@@ -320,20 +320,20 @@ namespace SistemaRRHH.Controllers
 		}
 
 		/// <summary>
-		/// Asigna un horario a un empleado (solo para creación)
-		/// Si ya existe una asignación activa, no crea duplicado
+		/// Asigna un horario a un empleado (solo para creacion)
+		/// Si ya existe una asignacion activa, no crea duplicado
 		/// </summary>
 		/// <param name="empleadoId">ID del empleado</param>
 		/// <param name="horarioId">ID del horario a asignar</param>
 		private void AsignarHorarioAEmpleado(int empleadoId, int horarioId)
 		{
-			// Verificar si ya existe una asignación activa
+			// Verificar si ya existe una asignacion activa
 			var asignacionExistente = db.AsignacionHorarios
 				.FirstOrDefault(a => a.EmpleadoID == empleadoId && a.Activo == true);
 
 			if (asignacionExistente == null)
 			{
-				// Solo crear nueva asignación si no existe una activa
+				// Solo crear nueva asignacion si no existe una activa
 				var nuevaAsignacion = new AsignacionHorarios
 				{
 					EmpleadoID = empleadoId,
@@ -349,13 +349,13 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Empleados/GetAll
-		/// Obtiene lista de empleados con filtros (búsqueda, cargo, activos/inactivos)
+		/// Obtiene lista de empleados con filtros (busqueda, cargo, activos/inactivos)
 		/// Utilizado por AJAX para cargar la tabla principal
 		/// </summary>
-		/// <param name="busqueda">Texto de búsqueda (nombre, email, teléfono)</param>
+		/// <param name="busqueda">Texto de busqueda (nombre, email, telefono)</param>
 		/// <param name="cargoId">ID del cargo para filtrar</param>
 		/// <param name="mostrarInactivos">Indica si mostrar empleados inactivos</param>
-		/// <returns>JSON con lista de empleados y estadísticas</returns>
+		/// <returns>JSON con lista de empleados y estadisticas</returns>
 		[HttpGet]
 		public JsonResult GetAll(string busqueda, int? cargoId, bool mostrarInactivos = false)
 		{
@@ -374,7 +374,7 @@ namespace SistemaRRHH.Controllers
 				empleadosQuery = empleadosQuery.Where(e => e.Activo == true);
 			}
 
-			// Filtro por texto de búsqueda
+			// Filtro por texto de busqueda
 			if (!string.IsNullOrEmpty(busqueda))
 			{
 				empleadosQuery = empleadosQuery.Where(e =>
@@ -390,42 +390,53 @@ namespace SistemaRRHH.Controllers
 				empleadosQuery = empleadosQuery.Where(e => e.CargoID == cargoId.Value);
 			}
 
-			// Traer datos a memoria para evitar errores de LINQ to Entities
-			var empleadosList = empleadosQuery
+			// Realizar proyeccion en la base de datos ANTES de llamar a ToList()
+			// para evitar el problema de N+1 consultas que agota el pool de conexiones.
+			var empleadosProyectados = empleadosQuery
 				.OrderBy(e => e.EmpleadoID)
+				.Select(e => new
+				{
+					e.EmpleadoID,
+					e.Nombre,
+					e.Apellido,
+					e.Telefono,
+					e.Email,
+					NombreCargo = e.Cargos != null ? e.Cargos.NombreCargo : "Sin Cargo",
+					e.CargoID,
+					e.Observaciones,
+					SalarioActual = e.Salarios.Where(s => s.Activo == true).Select(s => s.Monto).FirstOrDefault(),
+					e.FechaIngreso,
+					e.FechaNacimiento,
+					e.Activo,
+					// Traer datos del horario en SQL en lugar de multiples consultas
+					Horario = db.AsignacionHorarios
+						.Where(a => a.EmpleadoID == e.EmpleadoID && a.Activo == true)
+						.Select(a => a.Horarios)
+						.FirstOrDefault()
+				})
 				.ToList();
 
-			// Proyección en memoria (LINQ to Objects) para formatear datos
-			var empleados = empleadosList.Select(e => new
+			// Proyeccion en memoria (LINQ to Objects) para formatear cadenas (fechas, etc)
+			var empleados = empleadosProyectados.Select(e => new
 			{
 				e.EmpleadoID,
 				NombreCompleto = e.Nombre + " " + e.Apellido,
 				e.Telefono,
 				e.Email,
-				NombreCargo = e.Cargos != null ? e.Cargos.NombreCargo : "Sin Cargo",
+				e.NombreCargo,
 				e.CargoID,
 				e.Observaciones,
-				SalarioActual = e.Salarios.Where(s => s.Activo == true).Select(s => s.Monto).FirstOrDefault(),
+				e.SalarioActual,
 				FechaIngreso = e.FechaIngreso.HasValue ? e.FechaIngreso.Value.ToString("dd/MM/yyyy") : "No registrada",
 				Edad = e.FechaNacimiento.HasValue ? (int?)(DateTime.Now.Year - e.FechaNacimiento.Value.Year) : 0,
 				Estado = e.Activo == true ? "Activo" : "Inactivo",
 				e.Activo,
-				// Obtener nombre del horario activo
-				NombreHorario = db.AsignacionHorarios
-					.Where(a => a.EmpleadoID == e.EmpleadoID && a.Activo == true)
-					.Select(a => a.Horarios.Nombre)
-					.FirstOrDefault() ?? "Sin Horario",
-				HoraEntrada = db.AsignacionHorarios
-					.Where(a => a.EmpleadoID == e.EmpleadoID && a.Activo == true)
-					.Select(a => a.Horarios.HoraEntrada.ToString())
-					.FirstOrDefault(),
-				HoraSalida = db.AsignacionHorarios
-					.Where(a => a.EmpleadoID == e.EmpleadoID && a.Activo == true)
-					.Select(a => a.Horarios.HoraSalida.ToString())
-					.FirstOrDefault()
+				NombreHorario = e.Horario != null ? e.Horario.Nombre : "Sin Horario",
+				HoraEntrada = e.Horario != null ? e.Horario.HoraEntrada.ToString() : null,
+				HoraSalida = e.Horario != null ? e.Horario.HoraSalida.ToString() : null
 			}).ToList();
 
-			// Estadísticas para tarjetas de resumen
+			// Estadisticas para tarjetas de resumen
 			var estadisticas = new
 			{
 				Total = db.Empleados.Count(),
@@ -459,7 +470,7 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Empleados/GetDetalleEmpleado
-		/// Obtiene todos los detalles de un empleado específico para el modal de detalles
+		/// Obtiene todos los detalles de un empleado especifico para el modal de detalles
 		/// </summary>
 		/// <param name="id">ID del empleado</param>
 		/// <returns>JSON con datos detallados del empleado</returns>
@@ -517,9 +528,9 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Empleados/GetEstadisticasPorDepartamento
-		/// Obtiene estadísticas agrupadas por departamento (cantidad, salario promedio, antigüedad)
+		/// Obtiene estadisticas agrupadas por departamento (cantidad, salario promedio, antiguedad)
 		/// </summary>
-		/// <returns>JSON con estadísticas por departamento</returns>
+		/// <returns>JSON con estadisticas por departamento</returns>
 		[HttpGet]
 		public JsonResult GetEstadisticasPorDepartamento()
 		{
@@ -543,9 +554,9 @@ namespace SistemaRRHH.Controllers
 									  .Select(x => x.SalarioActivo.Value)
 									  .DefaultIfEmpty(0)
 									  .Average(),
-					// Calcular antigüedad promedio en años
+					// Calcular antiguedad promedio en anos
 					AntiguedadPromedio = g.Where(x => x.FechaIngreso.HasValue)
-										 .Average(x => CalcularAntiguedadEnAños(x.FechaIngreso.Value))
+										 .Average(x => CalcularAntiguedadEnAnos(x.FechaIngreso.Value))
 				})
 				.OrderByDescending(x => x.Cantidad)
 				.ToList();
@@ -554,17 +565,17 @@ namespace SistemaRRHH.Controllers
 		}
 
 		/// <summary>
-		/// Calcula la antigüedad en años desde la fecha de ingreso hasta hoy
+		/// Calcula la antiguedad en anos desde la fecha de ingreso hasta hoy
 		/// </summary>
 		/// <param name="fechaIngreso">Fecha de ingreso del empleado</param>
-		/// <returns>Número de años trabajados</returns>
-		private int CalcularAntiguedadEnAños(DateTime fechaIngreso)
+		/// <returns>Numero de años trabajados</returns>
+		private int CalcularAntiguedadEnAnos(DateTime fechaIngreso)
 		{
 			var hoy = DateTime.Now;
-			var años = hoy.Year - fechaIngreso.Year;
-			// Si aún no ha pasado el aniversario este año, restar un año
-			if (fechaIngreso.Date > hoy.AddYears(-años)) años--;
-			return años;
+			var anos = hoy.Year - fechaIngreso.Year;
+			// Si aun no ha pasado el aniversario este ano, restar un ano
+			if (fechaIngreso.Date > hoy.AddYears(-anos)) anos--;
+			return anos;
 		}
 
 		/// <summary>
@@ -601,7 +612,7 @@ namespace SistemaRRHH.Controllers
 		/// <summary>
 		/// Libera los recursos del contexto de base de datos
 		/// </summary>
-		/// <param name="disposing">Indica si se están liberando recursos administrados</param>
+		/// <param name="disposing">Indica si se estan liberando recursos administrados</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing) db.Dispose();

@@ -76,7 +76,7 @@
 	</div>
 </div>
 
-<!-- Tarjetas de estadísticas -->
+<!-- Tarjetas de estadisticas -->
 <div class="row mb-3" id="estadisticasPermisos">
 	<div class="col-md-4">
 		<div class="card text-white bg-warning">
@@ -187,7 +187,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<script>
-        // Función para convertir fecha JSON a formato legible
+        // Funcion para convertir fecha JSON a formato legible
         function formatearFecha(fechaJson) {
             if (!fechaJson) return 'N/A';
             if (fechaJson === null) return 'N/A';
@@ -235,7 +235,7 @@
                 currentFilters.mostrarInactivos = !currentFilters.mostrarInactivos;
                 $(this).text(currentFilters.mostrarInactivos ? 'Mostrar Activos' : 'Mostrar Inactivos');
                 $(this).toggleClass('btn-secondary btn-warning');
-                // Resetear búsqueda al cambiar vista
+                // Resetear busqueda al cambiar vista
                 $('#busquedaRapida').val('');
                 cargarPermisos();
             });
@@ -306,7 +306,7 @@
                                 <th>Empleado</th>
                                 <th>Tipo de Permiso</th>
                                 <th>Fechas</th>
-                                <th>Días</th>
+                                <th>Dias</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </thead>
@@ -360,7 +360,7 @@
                     `;
                 }
 
-                // Botón de activar/desactivar
+                // Boton de activar/desactivar
                 if (p.Activo) {
                     acciones += `<button class="btn btn-danger btn-sm btn-toggle" data-id="${p.SolicitudPermisoID}" data-nombre="${p.EmpleadoNombre}" data-activo="true" title="Desactivar permiso">
                                     <i class="fas fa-trash"></i> Desactivar
@@ -401,13 +401,13 @@
         }
 
         function togglePermiso(id, nombre, esActivo) {
-            var titulo = esActivo === true ? '¿Desactivar permiso?' : '¿Activar permiso?';
+            var titulo = esActivo === true ? 'Desactivar permiso?' : 'Activar permiso?';
             var texto = esActivo === true
-                ? `El permiso de "${nombre}" será desactivado.`
-                : `El permiso de "${nombre}" será activado nuevamente.`;
+                ? `El permiso de "${nombre}" sera desactivado.`
+                : `El permiso de "${nombre}" sera activado nuevamente.`;
             var icono = esActivo === true ? 'warning' : 'question';
             var botonColor = esActivo === true ? '#d33' : '#28a745';
-            var botonTexto = esActivo === true ? 'Sí, desactivar' : 'Sí, activar';
+            var botonTexto = esActivo === true ? 'Si, desactivar' : 'Si, activar';
 
             Swal.fire({
                 title: titulo,
@@ -429,7 +429,7 @@
                         success: function(response) {
                             if (response.success) {
                                 Swal.fire({
-                                    title: esActivo === true ? '¡Desactivado!' : '¡Activado!',
+                                    title: esActivo === true ? 'Desactivado!' : 'Activado!',
                                     text: response.message,
                                     icon: 'success',
                                     timer: 2000,
@@ -441,7 +441,7 @@
                             }
                         },
                         error: function() {
-                            Swal.fire('Error', 'Ocurrió un error al procesar la solicitud', 'error');
+                            Swal.fire('Error', 'Ocurrio un error al procesar la solicitud', 'error');
                         }
                     });
                 }
@@ -453,7 +453,7 @@
                 title: 'Aprobar Permiso',
                 text: `Ingrese un comentario para ${empleado}:`,
                 input: 'textarea',
-                inputPlaceholder: 'Comentario de aprobación...',
+                inputPlaceholder: 'Comentario de aprobacion...',
                 showCancelButton: true,
                 confirmButtonColor: '#28a745',
                 confirmButtonText: 'Aprobar',
@@ -538,7 +538,7 @@
                                     <tr>
                                         <th><i class="fas fa-tag"></i> Tipo</th>
                                         <th><i class="fas fa-calendar-alt"></i> Fechas</th>
-                                        <th><i class="fas fa-sun"></i> Días</th>
+                                        <th><i class="fas fa-sun"></i> Dias</th>
                                         <th><i class="fas fa-chart-line"></i> Estado</th>
                                     </thead>
                                     <tbody>

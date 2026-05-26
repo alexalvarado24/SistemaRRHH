@@ -99,7 +99,7 @@
 
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label class="form-label fw-bold">Días Solicitados</label>
+								<label class="form-label fw-bold">Dias Solicitados</label>
 								<div class="input-group">
 									<span class="input-group-text bg-info text-white">
 										<i class="fas fa-calendar-day"></i>
@@ -109,7 +109,7 @@
 							</div>
 
 							<div class="col-md-6 mb-3">
-								<label class="form-label fw-bold">Días Disponibles</label>
+								<label class="form-label fw-bold">Dias Disponibles</label>
 								<div class="input-group">
 									<span class="input-group-text bg-warning text-white">
 										<i class="fas fa-clock"></i>
@@ -125,11 +125,11 @@
 								@Html.LabelFor(model => model.Observaciones, "Observaciones", new { @class = "form-label fw-bold" })
 								@if (Model.Estado == "PENDIENTE")
 								{
-									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional...", @id = "Observaciones" })
+									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observacion adicional...", @id = "Observaciones" })
 								}
 								else
 								{
-									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observación adicional...", @id = "Observaciones", disabled = "disabled" })
+									@Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @rows = "3", @placeholder = "Ingrese cualquier observacion adicional...", @id = "Observaciones", disabled = "disabled" })
 								}
 								@Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
 							</div>
@@ -163,13 +163,13 @@
         $(document).ready(function() {
             var estadoOriginal = '@Model.Estado';
 
-            // Si el permiso ya no está pendiente, no permitir cambios
+            // Si el permiso ya no esta pendiente, no permitir cambios
             if (estadoOriginal !== 'PENDIENTE') {
                 $('#btnGuardar').prop('disabled', true);
                 return;
             }
 
-            // Función para calcular días entre fechas
+            // Funcion para calcular dias entre fechas
             function calcularDias() {
                 var fechaInicio = $('#FechaInicio').val();
                 var fechaFin = $('#FechaFin').val();
@@ -184,7 +184,7 @@
                         $('#DiasSolicitados').val(diffDays);
                         return diffDays;
                     } else {
-                        $('#DiasSolicitados').val('Fecha inválida');
+                        $('#DiasSolicitados').val('Fecha invalida');
                         return 0;
                     }
                 }
@@ -192,7 +192,7 @@
                 return 0;
             }
 
-            // Función para verificar disponibilidad vía AJAX
+            // Funcion para verificar disponibilidad via AJAX
             function verificarDisponibilidad() {
                 var empleadoId = $('#EmpleadoID').val();
                 var tipoPermisoId = $('#TipoPermisoID').val();
@@ -218,14 +218,14 @@
                             dataType: 'json',
                             success: function(response) {
                                 if (response.disponible) {
-                                    $('#DiasDisponibles').val(response.diasDisponibles + ' días');
-                                    $('#disponibilidadMsg').html('<span class="text-success">✓ Días disponibles: ' + response.diasDisponibles + ' de ' + response.maximoPermitido + '</span>');
+                                    $('#DiasDisponibles').val(response.diasDisponibles + ' dias');
+                                    $('#disponibilidadMsg').html('<span class="text-success">✓ Dias disponibles: ' + response.diasDisponibles + ' de ' + response.maximoPermitido + '</span>');
                                     $('#mensajeInfo').hide();
                                     $('#btnGuardar').prop('disabled', false);
                                 } else {
-                                    $('#DiasDisponibles').val('0 días');
-                                    $('#disponibilidadMsg').html('<span class="text-danger">✗ No hay suficientes días. Máximo: ' + response.maximoPermitido + ' días, Usados: ' + response.diasUsados + '</span>');
-                                    $('#mensajeInfo').show().removeClass('alert-info').addClass('alert-warning').find('#infoTexto').text('No tiene suficientes días disponibles para este tipo de permiso');
+                                    $('#DiasDisponibles').val('0 dias');
+                                    $('#disponibilidadMsg').html('<span class="text-danger">✗ No hay suficientes dias. Maximo: ' + response.maximoPermitido + ' dias, Usados: ' + response.diasUsados + '</span>');
+                                    $('#mensajeInfo').show().removeClass('alert-info').addClass('alert-warning').find('#infoTexto').text('No tiene suficientes dias disponibles para este tipo de permiso');
                                     $('#btnGuardar').prop('disabled', true);
                                 }
                             },
@@ -242,10 +242,10 @@
                 }
             }
 
-            // Calcular días iniciales
+            // Calcular dias iniciales
             calcularDias();
 
-            // Si el permiso está pendiente, verificar disponibilidad
+            // Si el permiso esta pendiente, verificar disponibilidad
             if (estadoOriginal === 'PENDIENTE') {
                 verificarDisponibilidad();
             }
@@ -258,7 +258,7 @@
                 }
             });
 
-            // Validación antes de enviar
+            // Validacion antes de enviar
             $('#formPermiso').on('submit', function(e) {
                 if (estadoOriginal !== 'PENDIENTE') {
                     e.preventDefault();
@@ -267,9 +267,9 @@
                 }
 
                 var disponible = $('#DiasDisponibles').val();
-                if (disponible === '0 días' || disponible === '--' || disponible === 'Error') {
+                if (disponible === '0 dias' || disponible === '--' || disponible === 'Error') {
                     e.preventDefault();
-                    alert('No es posible guardar la solicitud porque no hay días suficientes disponibles.');
+                    alert('No es posible guardar la solicitud porque no hay dias suficientes disponibles.');
                     return false;
                 }
                 return true;

@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     @Html.LabelFor(model => model.NombreCargo, "Nombre de la Plaza / Puesto *", new { @class = "form-label fw-bold" })
-                    @Html.TextBoxFor(model => model.NombreCargo, new { @class = "form-control", placeholder = "Ej. Analista de Créditos Senior", required = "required" })
+                    @Html.TextBoxFor(model => model.NombreCargo, new { @class = "form-control", placeholder = "Ej. Analista de Creditos Senior", required = "required" })
                     @Html.ValidationMessageFor(model => model.NombreCargo, "", new { @class = "text-danger" })
                 </div>
 
@@ -39,7 +39,7 @@
             </div>
 
             <div class="mb-3">
-                @Html.LabelFor(model => model.Descripcion, "Descripción o Funciones del Cargo", new { @class = "form-label fw-bold" })
+                @Html.LabelFor(model => model.Descripcion, "Descripcion o Funciones del Cargo", new { @class = "form-label fw-bold" })
                 @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = "3", placeholder = "Escriba brevemente las responsabilidades principales del puesto..." })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>

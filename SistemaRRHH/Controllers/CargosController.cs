@@ -38,7 +38,7 @@ namespace SistemaRRHH.Controllers
                     {
                         c.CargoID,
                         c.NombreCargo,
-                        Descripcion = c.Descripcion ?? "Sin descripción",
+                        Descripcion = c.Descripcion ?? "Sin descripcion",
                         DepartamentoNombre = c.Departamentos.Nombre,
                         c.Activo
                     })

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -389,7 +389,7 @@
           <Property Name="PlanillaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
           <Property Name="Mes" Type="Int32" Nullable="false" />
-          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Ano" Type="Int32" Nullable="false" />
           <Property Name="MontoTotal" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="AFP" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="ISSS" Type="Decimal" Precision="10" Scale="2" />
@@ -667,7 +667,7 @@
                 <ScalarProperty Name="PlanillaID" ColumnName="PlanillaID" />
                 <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
                 <ScalarProperty Name="Mes" ColumnName="Mes" />
-                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Ano" ColumnName="Año" />
                 <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
                 <ScalarProperty Name="AFP" ColumnName="AFP" />
                 <ScalarProperty Name="ISSS" ColumnName="ISSS" />

@@ -18,7 +18,7 @@ namespace SistemaRRHH.Controllers.API
 		/// <summary>
 		/// GET: api/reportes/empleados
 		/// Obtiene la lista de empleados para reportes en tiempo real
-		/// Parámetro opcional: soloActivos (default: true)
+		/// Parametro opcional: soloActivos (default: true)
 		/// </summary>
 		/// <param name="soloActivos">Si es true, solo devuelve empleados activos (Activo = true)</param>
 		/// <returns>JSON con lista de empleados, total y fecha del reporte</returns>
@@ -35,7 +35,7 @@ namespace SistemaRRHH.Controllers.API
 					.Where(e => soloActivos ? e.Activo == true : true)
 					.Select(e => new
 					{
-						// Datos básicos del empleado
+						// Datos basicos del empleado
 						e.EmpleadoID,
 						// Concatena nombre y apellido
 						NombreCompleto = e.Nombre + " " + e.Apellido,
@@ -48,7 +48,7 @@ namespace SistemaRRHH.Controllers.API
 						// Obtiene el nombre del departamento (si existe, sino "Sin Departamento")
 						Departamento = e.Cargos.Departamentos != null ? e.Cargos.Departamentos.Nombre : "Sin Departamento",
 
-						// Obtiene el salario activo del empleado (el último salario con Activo = true)
+						// Obtiene el salario activo del empleado (el ultimo salario con Activo = true)
 						// Si no hay salario, devuelve 0
 						Salario = e.Salarios.Where(s => s.Activo == true).Select(s => s.Monto).FirstOrDefault() ?? 0,
 
@@ -61,23 +61,23 @@ namespace SistemaRRHH.Controllers.API
 						// Estado del empleado: "Activo" si Activo = true, "Inactivo" si no
 						Estado = e.Activo == true ? "Activo" : "Inactivo"
 					})
-					// Ordena alfabéticamente por nombre completo
+					// Ordena alfabeticamente por nombre completo
 					.OrderBy(e => e.NombreCompleto)
 					// Ejecuta la consulta y convierte a lista
 					.ToList();
 
-				// Retorna JSON con éxito, los datos, el total y la fecha/hora actual
+				// Retorna JSON con exito, los datos, el total y la fecha/hora actual
 				return Ok(new
 				{
-					success = true,           // Indica que la operación fue exitosa
+					success = true,           // Indica que la operacion fue exitosa
 					data = empleados,          // Lista de empleados
 					count = empleados.Count,   // Cantidad total de empleados obtenidos
-					fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm")  // Fecha y hora de generación
+					fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm")  // Fecha y hora de generacion
 				});
 			}
 			catch (Exception ex)
 			{
-				// Si ocurre algún error, retorna un mensaje de error
+				// Si ocurre algun error, retorna un mensaje de error
 				return BadRequest(ex.Message);
 			}
 		}
@@ -95,14 +95,14 @@ namespace SistemaRRHH.Controllers.API
 			var cargos = db.Cargos
 				// Solo cargos activos (Activo = true)
 				.Where(c => c.Activo == true)
-				// Selecciona solo ID y Nombre (proyección)
+				// Selecciona solo ID y Nombre (proyeccion)
 				.Select(c => new { c.CargoID, c.NombreCargo })
-				// Ordena alfabéticamente por nombre del cargo
+				// Ordena alfabeticamente por nombre del cargo
 				.OrderBy(c => c.NombreCargo)
 				// Ejecuta la consulta y convierte a lista
 				.ToList();
 
-			// Retorna JSON con éxito y los datos
+			// Retorna JSON con exito y los datos
 			return Ok(new { success = true, data = cargos });
 		}
 

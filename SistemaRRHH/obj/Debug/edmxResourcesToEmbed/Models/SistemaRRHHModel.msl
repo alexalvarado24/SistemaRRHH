@@ -108,7 +108,7 @@
           <ScalarProperty Name="PlanillaID" ColumnName="PlanillaID" />
           <ScalarProperty Name="EmpleadoID" ColumnName="EmpleadoID" />
           <ScalarProperty Name="Mes" ColumnName="Mes" />
-          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="Ano" ColumnName="Año" />
           <ScalarProperty Name="MontoTotal" ColumnName="MontoTotal" />
           <ScalarProperty Name="AFP" ColumnName="AFP" />
           <ScalarProperty Name="ISSS" ColumnName="ISSS" />

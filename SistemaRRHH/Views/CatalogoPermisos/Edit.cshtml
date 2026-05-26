@@ -1,0 +1,61 @@
+﻿@model SistemaRRHH.Models.CatalogoPermisos
+
+@{
+    ViewBag.Title = "Modificar Tipo de Permiso";
+}
+
+<h2 class="mb-4"><i class="fas fa-edit text-warning"></i> Modificar Tipo de Permiso #@Model.TipoPermisoID</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.TipoPermisoID)
+    @Html.HiddenFor(model => model.Activo)
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-white">
+            <h5 class="mb-0"><i class="fas fa-clipboard-list"></i> Detalles del Tipo de Permiso</h5>
+        </div>
+        <div class="card-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    @Html.LabelFor(model => model.NombrePermiso, "Nombre del Tipo de Permiso *", new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(model => model.NombrePermiso, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.NombrePermiso, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.DiasMaximos, "Dias Maximos Permitidos", new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(model => model.DiasMaximos, new { @class = "form-control", type = "number", min = "0" })
+                    <small class="text-muted">Dejar vacio si no hay limite.</small>
+                    @Html.ValidationMessageFor(model => model.DiasMaximos, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Descripcion, "Descripcion del Permiso", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index")" class="btn btn-secondary px-4">
+                    <i class="fas fa-arrow-left"></i> Cancelar
+                </a>
+                <button type="submit" class="btn btn-warning px-4 text-white fw-bold">
+                    <i class="fas fa-save"></i> Actualizar Tipo de Permiso
+                </button>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,65 @@
+﻿@model SistemaRRHH.Models.CatalogoPermisos
+
+@{
+    ViewBag.Title = "Nuevo Tipo de Permiso";
+}
+
+<h2 class="mb-4"><i class="fas fa-clipboard-list text-success"></i> Registrar Nuevo Tipo de Permiso</h2>
+
+@using (Html.BeginForm("Create", "CatalogoPermisos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0"><i class="fas fa-plus-square"></i> Datos del Tipo de Permiso</h5>
+        </div>
+        <div class="card-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    @Html.LabelFor(model => model.NombrePermiso, "Nombre del Tipo de Permiso *", new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(model => model.NombrePermiso, new { @class = "form-control", placeholder = "Ej. Vacaciones, Enfermedad, Maternidad...", required = "required" })
+                    @Html.ValidationMessageFor(model => model.NombrePermiso, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    @Html.LabelFor(model => model.DiasMaximos, "Dias Maximos Permitidos", new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(model => model.DiasMaximos, new { @class = "form-control", placeholder = "Ej. 15", type = "number", min = "0" })
+                    <small class="text-muted">Dejar vacio si no hay limite.</small>
+                    @Html.ValidationMessageFor(model => model.DiasMaximos, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Descripcion, "Descripcion del Permiso", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = "3", placeholder = "Describa en que casos aplica este tipo de permiso..." })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index")" class="btn btn-secondary px-4">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+                <button type="submit" class="btn btn-success px-4">
+                    <i class="fas fa-save"></i> Registrar Tipo de Permiso
+                </button>
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

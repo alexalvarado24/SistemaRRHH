@@ -32,7 +32,7 @@
 	}
 </style>
 
-<h2>Gestión de Empleados</h2>
+<h2>Gestion de Empleados</h2>
 
 @if (TempData["Success"] != null)
 {
@@ -66,7 +66,7 @@
 	</div>
 	<div class="col-md-6">
 		<div class="input-group">
-			<input type="text" id="busquedaRapida" class="form-control" placeholder="Buscar por nombre, email o teléfono..." />
+			<input type="text" id="busquedaRapida" class="form-control" placeholder="Buscar por nombre, email o telefono..." />
 			<span class="input-group-text bg-primary text-white">
 				<i class="fas fa-search"></i>
 			</span>
@@ -74,7 +74,7 @@
 	</div>
 </div>
 
-<!-- Tarjetas de estadísticas -->
+<!-- Tarjetas de estadisticas -->
 <div class="row mb-3" id="estadisticasEmpleados">
 	<div class="col-md-4">
 		<div class="card text-white bg-primary">
@@ -127,7 +127,7 @@
 			<div class="col-md-4">
 				<label>&nbsp;</label>
 				<button id="btnEstadisticas" class="btn btn-outline-dark form-control">
-					<i class="fas fa-chart-bar"></i> Estadísticas por Depto
+					<i class="fas fa-chart-bar"></i> Estadisticas por Depto
 				</button>
 			</div>
 		</div>
@@ -145,7 +145,7 @@
 	<div id="tablaContent" style="display: none;"></div>
 </div>
 
-<!-- Modal para mostrar detalles vía AJAX -->
+<!-- Modal para mostrar detalles via AJAX -->
 <div class="modal fade" id="detalleModal" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -167,19 +167,19 @@
 	</div>
 </div>
 
-<!-- Modal para estadísticas -->
+<!-- Modal para estadisticas -->
 <div class="modal fade" id="estadisticasModal" tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header bg-dark text-white">
 				<h5 class="modal-title">
-					<i class="fas fa-chart-bar"></i> Estadísticas por Departamento
+					<i class="fas fa-chart-bar"></i> Estadisticas por Departamento
 				</h5>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
 			</div>
 			<div class="modal-body" id="estadisticasModalBody">
 				<div class="text-center">
-					<i class="fas fa-spinner fa-spin fa-2x"></i> Cargando estadísticas...
+					<i class="fas fa-spinner fa-spin fa-2x"></i> Cargando estadisticas...
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -303,7 +303,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre Completo</th>
-                                <th>Teléfono</th>
+                                <th>Telefono</th>
                                 <th>Email</th>
                                 <th>Cargo</th>
                                 <th>Salario</th>
@@ -366,11 +366,11 @@
             var esActivo = estadoActual === 'Activo';
             var titulo = esActivo ? '¿Desactivar empleado?' : '¿Activar empleado?';
             var texto = esActivo
-                ? `El empleado "${nombre}" será desactivado. Podrá activarlo nuevamente más tarde.`
-                : `El empleado "${nombre}" será activado nuevamente.`;
+                ? `El empleado "${nombre}" sera desactivado. Podra activarlo nuevamente mas tarde.`
+                : `El empleado "${nombre}" sera activado nuevamente.`;
             var icono = esActivo ? 'warning' : 'question';
             var botonColor = esActivo ? '#d33' : '#28a745';
-            var botonTexto = esActivo ? 'Sí, desactivar' : 'Sí, activar';
+            var botonTexto = esActivo ? 'Si, desactivar' : 'Si, activar';
 
             Swal.fire({
                 title: titulo,
@@ -404,7 +404,7 @@
                             }
                         },
                         error: function() {
-                            Swal.fire('Error', 'Ocurrió un error al procesar la solicitud', 'error');
+                            Swal.fire('Error', 'Ocurrio un error al procesar la solicitud', 'error');
                         }
                     });
                 }
@@ -434,10 +434,10 @@
                                             <strong>Email:</strong> ${e.Email || 'N/A'}
                                         </div>
                                         <div class="col-md-12 mb-2">
-                                            <strong>Teléfono:</strong> ${e.Telefono || 'N/A'}
+                                            <strong>Telefono:</strong> ${e.Telefono || 'N/A'}
                                         </div>
                                         <div class="col-md-12 mb-2">
-                                            <strong>Dirección:</strong> ${e.Direccion || 'N/A'}
+                                            <strong>Direccion:</strong> ${e.Direccion || 'N/A'}
                                         </div>
                                         <div class="col-md-6 mb-2">
                                             <strong>Cargo:</strong> ${e.Cargo || 'N/A'}
@@ -477,7 +477,7 @@
 
         function cargarEstadisticas() {
             $('#estadisticasModal').modal('show');
-            $('#estadisticasModalBody').html('<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i> Cargando estadísticas...</div>');
+            $('#estadisticasModalBody').html('<div class="text-center"><i class="fas fa-spinner fa-spin fa-2x"></i> Cargando estadisticas...</div>');
 
             $.ajax({
                 url: '@Url.Action("GetEstadisticasPorDepartamento", "Empleados")',
@@ -492,7 +492,7 @@
                     var html = `
                         <table class="table table-bordered table-hover">
                             <thead class="table-dark">
-                                <tr><th>Departamento</th><th>Cantidad</th><th>Salario Promedio</th><th>Antigüedad Promedio</th></tr>
+                                <tr><th>Departamento</th><th>Cantidad</th><th>Salario Promedio</th><th>Antiguedad Promedio</th></tr>
                             </thead>
                             <tbody>
                     `;
@@ -512,7 +512,7 @@
                     $('#estadisticasModalBody').html(html);
                 },
                 error: function() {
-                    $('#estadisticasModalBody').html('<div class="alert alert-danger">Error al cargar estadísticas</div>');
+                    $('#estadisticasModalBody').html('<div class="alert alert-danger">Error al cargar estadisticas</div>');
                 }
             });
         }

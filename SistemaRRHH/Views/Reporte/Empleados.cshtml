@@ -72,7 +72,7 @@
 		<div id="sinReporte" class="info-box">
 			<i class="fas fa-chart-line fa-3x text-success"></i>
 			<p class="mt-2">Haga clic en <strong>"Ver Reporte"</strong> para visualizar el reporte de empleados</p>
-			<small class="text-muted">El reporte se abrirá en el visor PDF integrado</small>
+			<small class="text-muted">El reporte se abrira en el visor PDF integrado</small>
 		</div>
 	</div>
 </div>
@@ -82,7 +82,7 @@
     $(document).ready(function () {
         var reporteUrl = "@Url.Action("VerEmpleados", "Reporte")";
 
-        // Botón Ver Reporte
+        // Boton Ver Reporte
         $("#btnVerReporte").on("click", function () {
             $("#sinReporte").hide();
             $("#reporteSimple").show();

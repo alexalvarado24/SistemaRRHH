@@ -115,7 +115,7 @@
     <Property Name="PlanillaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmpleadoID" Type="Int32" Nullable="false" />
     <Property Name="Mes" Type="Int32" Nullable="false" />
-    <Property Name="Año" Type="Int32" Nullable="false" />
+    <Property Name="Ano" Type="Int32" Nullable="false" />
     <Property Name="MontoTotal" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="AFP" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="ISSS" Type="Decimal" Precision="10" Scale="2" />

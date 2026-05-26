@@ -8,8 +8,8 @@ using System.Collections.Generic;
 namespace SistemaRRHH.Controllers
 {
 	/// <summary>
-	/// Controlador para la gestión de permisos de empleados
-	/// Maneja operaciones CRUD, aprobación/rechazo, activación/desactivación y verificación de disponibilidad
+	/// Controlador para la gestion de permisos de empleados
+	/// Maneja operaciones CRUD, aprobacion/rechazo, activacion/desactivacion y verificacion de disponibilidad
 	/// </summary>
 	public class PermisosController : Controller
 	{
@@ -20,7 +20,7 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Permisos
-		/// Vista principal que carga el listado de permisos vía AJAX
+		/// Vista principal que carga el listado de permisos via AJAX
 		/// </summary>
 		public ActionResult Index()
 		{
@@ -70,11 +70,11 @@ namespace SistemaRRHH.Controllers
 			{
 				try
 				{
-					// Obtiene el catálogo del permiso para agregar descripción por defecto
+					// Obtiene el catalogo del permiso para agregar descripcion por defecto
 					var catalogo = db.CatalogoPermisos.Find(permiso.TipoPermisoID);
 					if (catalogo != null)
 					{
-						// Si no hay observaciones, usa la descripción del catálogo
+						// Si no hay observaciones, usa la descripcion del catalogo
 						permiso.Observaciones = string.IsNullOrEmpty(permiso.Observaciones)
 							? catalogo.Descripcion
 							: catalogo.Descripcion + " - " + permiso.Observaciones;
@@ -83,7 +83,7 @@ namespace SistemaRRHH.Controllers
 					// Valores por defecto para un nuevo permiso
 					permiso.Estado = "PENDIENTE";    // Estado inicial
 					permiso.Activo = true;            // Activo por defecto
-					permiso.FechaCreacion = DateTime.Now;  // Marca fecha de creación
+					permiso.FechaCreacion = DateTime.Now;  // Marca fecha de creacion
 
 					db.Permisos.Add(permiso);
 					db.SaveChanges();
@@ -108,7 +108,7 @@ namespace SistemaRRHH.Controllers
 		/// <summary>
 		/// GET: Permisos/Edit/5
 		/// Muestra el formulario para editar un permiso existente
-		/// Solo permite editar si el permiso está PENDIENTE
+		/// Solo permite editar si el permiso esta PENDIENTE
 		/// </summary>
 		public ActionResult Edit(int id)
 		{
@@ -133,7 +133,7 @@ namespace SistemaRRHH.Controllers
 		/// <summary>
 		/// POST: Permisos/Edit/5
 		/// Actualiza un permiso existente
-		/// Solo permite actualizar si el permiso está PENDIENTE
+		/// Solo permite actualizar si el permiso esta PENDIENTE
 		/// </summary>
 		[HttpPost]
 		[ValidateAntiForgeryToken]
@@ -157,7 +157,7 @@ namespace SistemaRRHH.Controllers
 			{
 				try
 				{
-					// Marca la fecha de modificación
+					// Marca la fecha de modificacion
 					permisoExistente.FechaModificacion = DateTime.Now;
 					db.SaveChanges();
 					TempData["Success"] = "Permiso actualizado exitosamente";
@@ -179,7 +179,7 @@ namespace SistemaRRHH.Controllers
 		/// <summary>
 		/// POST: Permisos/ToggleActivo
 		/// Activa o desactiva un permiso (Soft Delete)
-		/// No elimina el registro físicamente, solo cambia el estado Activo
+		/// No elimina el registro fisicamente, solo cambia el estado Activo
 		/// </summary>
 		[HttpPost]
 		public JsonResult ToggleActivo(int id)
@@ -215,12 +215,12 @@ namespace SistemaRRHH.Controllers
 			}
 		}
 
-		// ==================== ELIMINACIÓN FÍSICA (OPCIONAL) ====================
+		// ==================== ELIMINACION FISICA (OPCIONAL) ====================
 
 		/// <summary>
 		/// POST: Permisos/Delete
-		/// Elimina físicamente un permiso de la base de datos
-		/// USAR CON PRECAUCIÓN - Eliminación permanente
+		/// Elimina fisicamente un permiso de la base de datos
+		/// USAR CON PRECAUCION - Eliminacion permanente
 		/// </summary>
 		[HttpPost]
 		public JsonResult Delete(int id)
@@ -248,19 +248,19 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Permisos/GetAll (AJAX)
-		/// Obtiene lista de permisos con múltiples filtros
-		/// Parámetros:
+		/// Obtiene lista de permisos con multiples filtros
+		/// Parametros:
 		///   - estado: PENDIENTE, APROBADO, RECHAZADO, TODOS
 		///   - empleadoId: ID del empleado
 		///   - desde/hasta: rango de fechas
-		///   - mostrarInactivos: si muestra también permisos desactivados
+		///   - mostrarInactivos: si muestra tambien permisos desactivados
 		/// </summary>
 		[HttpGet]
 		public JsonResult GetAll(string estado, int? empleadoId, DateTime? desde, DateTime? hasta, bool mostrarInactivos = false)
 		{
 			var permisosQuery = db.Permisos
 				.Include(p => p.Empleados)          // Incluye datos del empleado
-				.Include(p => p.CatalogoPermisos)   // Incluye datos del catálogo
+				.Include(p => p.CatalogoPermisos)   // Incluye datos del catalogo
 				.AsQueryable();
 
 			// ========== FILTRO POR ACTIVO/INACTIVO ==========
@@ -295,7 +295,7 @@ namespace SistemaRRHH.Controllers
 				permisosQuery = permisosQuery.Where(p => p.FechaFin <= hasta.Value);
 			}
 
-			// ========== PROYECCIÓN DE DATOS ==========
+			// ========== PROYECCION DE DATOS ==========
 			var permisosTemp = permisosQuery
 				.OrderBy(p => p.FechaInicio)  // Orden ascendente por fecha
 				.Select(p => new
@@ -312,7 +312,7 @@ namespace SistemaRRHH.Controllers
 				})
 				.ToList();
 
-			// ========== CÁLCULO DE DÍAS SOLICITADOS ==========
+			// ========== CALCULO DE DIAS SOLICITADOS ==========
 			var permisosList = permisosTemp.Select(p => new
 			{
 				p.SolicitudPermisoID,
@@ -328,7 +328,7 @@ namespace SistemaRRHH.Controllers
 				p.Activo
 			}).ToList();
 
-			// ========== ESTADÍSTICAS PARA TARJETAS ==========
+			// ========== ESTADISTICAS PARA TARJETAS ==========
 			var estadisticas = new
 			{
 				Pendientes = db.Permisos.Count(p => p.Estado != null && p.Estado.ToUpper() == "PENDIENTE" && p.Activo == true),
@@ -392,7 +392,7 @@ namespace SistemaRRHH.Controllers
 				return Json(new { success = false, message = "Permiso no encontrado" });
 			}
 
-			// Cambia estado y agrega comentario de aprobación
+			// Cambia estado y agrega comentario de aprobacion
 			permiso.Estado = "APROBADO";
 			permiso.Observaciones = (permiso.Observaciones ?? "") +
 				$"\n--- Aprobado el {DateTime.Now:dd/MM/yyyy HH:mm}: {comentario} ---";
@@ -447,7 +447,7 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Permisos/GetHistorial
-		/// Obtiene el historial de permisos de un empleado específico
+		/// Obtiene el historial de permisos de un empleado especifico
 		/// Solo muestra permisos ACTIVOS
 		/// </summary>
 		[HttpGet]
@@ -459,7 +459,7 @@ namespace SistemaRRHH.Controllers
 				.Where(p => p.EmpleadoID == empleadoId && p.Activo == true)
 				.ToList();
 
-			// Filtra por año si se especifica
+			// Filtra por ano si se especifica
 			var resultado = query
 				.Where(p => year == 0 || (p.FechaInicio.HasValue && p.FechaInicio.Value.Year == year))
 				.Select(p => new
@@ -472,7 +472,7 @@ namespace SistemaRRHH.Controllers
 					Dias = p.FechaInicio.HasValue && p.FechaFin.HasValue ?
 						   (p.FechaFin.Value - p.FechaInicio.Value).Days + 1 : 0
 				})
-				.OrderByDescending(p => p.FechaInicio)  // Más recientes primero
+				.OrderByDescending(p => p.FechaInicio)  // Mas recientes primero
 				.ToList();
 
 			return Json(resultado, JsonRequestBehavior.AllowGet);
@@ -482,15 +482,15 @@ namespace SistemaRRHH.Controllers
 
 		/// <summary>
 		/// GET: Permisos/VerificarDisponibilidad
-		/// Verifica si un empleado tiene días disponibles para un tipo de permiso
-		/// Calcula días usados vs días máximos permitidos
+		/// Verifica si un empleado tiene dias disponibles para un tipo de permiso
+		/// Calcula dias usados vs dias maximos permitidos
 		/// </summary>
 		[HttpGet]
 		public JsonResult VerificarDisponibilidad(int empleadoId, int tipoPermisoId, DateTime inicio, DateTime fin)
 		{
 			try
 			{
-				// Calcula días solicitados
+				// Calcula dias solicitados
 				var diasSolicitados = (fin - inicio).Days + 1;
 
 				if (diasSolicitados <= 0)
@@ -502,11 +502,11 @@ namespace SistemaRRHH.Controllers
 						diasUsados = 0,
 						diasDisponibles = 0,
 						maximoPermitido = 0,
-						message = "Las fechas son inválidas"
+						message = "Las fechas son invalidas"
 					}, JsonRequestBehavior.AllowGet);
 				}
 
-				// Obtiene el límite máximo del catálogo de permisos
+				// Obtiene el limite maximo del catalogo de permisos
 				var catalogo = db.CatalogoPermisos.Find(tipoPermisoId);
 				int maxDiasPorTipo = catalogo?.DiasMaximos ?? 10;
 				string nombrePermiso = catalogo?.NombrePermiso ?? "General";
@@ -522,7 +522,7 @@ namespace SistemaRRHH.Controllers
 								p.FechaFin.HasValue)
 					.ToList();
 
-				// Calcula días ya usados
+				// Calcula dias ya usados
 				int diasUsados = 0;
 				foreach (var permiso in permisosAprobados)
 				{
@@ -532,7 +532,7 @@ namespace SistemaRRHH.Controllers
 					}
 				}
 
-				// Calcula días disponibles
+				// Calcula dias disponibles
 				int diasDisponibles = maxDiasPorTipo - diasUsados;
 				bool disponible = diasSolicitados <= diasDisponibles && diasDisponibles > 0;
 
@@ -544,7 +544,7 @@ namespace SistemaRRHH.Controllers
 					diasDisponibles = diasDisponibles > 0 ? diasDisponibles : 0,
 					maximoPermitido = maxDiasPorTipo,
 					nombrePermiso = nombrePermiso,
-					message = disponible ? "Días disponibles" : "No hay suficientes días disponibles"
+					message = disponible ? "Dias disponibles" : "No hay suficientes dias disponibles"
 				}, JsonRequestBehavior.AllowGet);
 			}
 			catch (Exception ex)
@@ -562,11 +562,11 @@ namespace SistemaRRHH.Controllers
 			}
 		}
 
-		// ==================== MÉTODO AUXILIAR ====================
+		// ==================== METODO AUXILIAR ====================
 
 		/// <summary>
-		/// Obtiene estadísticas actualizadas de permisos ACTIVOS
-		/// Usado después de aprobar/rechazar para actualizar tarjetas
+		/// Obtiene estadisticas actualizadas de permisos ACTIVOS
+		/// Usado despues de aprobar/rechazar para actualizar tarjetas
 		/// </summary>
 		private object ObtenerEstadisticas()
 		{

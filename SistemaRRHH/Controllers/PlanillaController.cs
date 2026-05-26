@@ -26,14 +26,14 @@ namespace SistemaRRHH.Controllers
 
                 var planillas = await db.Planilla
                     .Include(p => p.Empleados)
-                    .Where(p => p.Mes == filtroMes && p.Año == filtroAnio && p.Activo)
+                    .Where(p => p.Mes == filtroMes && p.Ano == filtroAnio && p.Activo)
                     .Select(p => new
                     {
                         p.PlanillaID,
                         p.EmpleadoID,
                         NombreCompleto = p.Empleados.Nombre + " " + p.Empleados.Apellido,
                         p.Mes,
-                        p.Año,
+                        Ano = p.Ano,
                         p.MontoTotal,
                         p.AFP,
                         p.ISSS,
@@ -70,10 +70,10 @@ namespace SistemaRRHH.Controllers
             {
                 try
                 {
-                    bool existe = await db.Planilla.AnyAsync(p => p.Mes == mes && p.Año == anio && p.Activo);
+                    bool existe = await db.Planilla.AnyAsync(p => p.Mes == mes && p.Ano == anio && p.Activo);
                     if (existe)
                     {
-                        return Json(new { success = false, message = "La planilla para el mes y año seleccionados ya fue generada." });
+                        return Json(new { success = false, message = "La planilla para el mes y ano seleccionados ya fue generada." });
                     }
 
                     var empleadosActivos = await db.Empleados
@@ -119,7 +119,7 @@ namespace SistemaRRHH.Controllers
                         {
                             EmpleadoID = emp.EmpleadoID,
                             Mes = mes,
-                            Año = anio,
+                            Ano = anio,
                             MontoTotal = sueldoBase,
                             AFP = afp,
                             ISSS = isss,
@@ -136,7 +136,7 @@ namespace SistemaRRHH.Controllers
                     await db.SaveChangesAsync();
                     transaction.Commit();
 
-                    return Json(new { success = true, message = "Planilla mensual pre-calculada y generada con éxito de forma global." });
+                    return Json(new { success = true, message = "Planilla mensual pre-calculada y generada con exito de forma global." });
                 }
                 catch (Exception ex)
                 {

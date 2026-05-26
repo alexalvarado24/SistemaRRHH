@@ -1,7 +1,7 @@
-﻿@model IEnumerable<SistemaRRHH.Models.Cargos>
+﻿@model IEnumerable<SistemaRRHH.Models.CatalogoPermisos>
 
 @{
-    ViewBag.Title = "Cargos";
+    ViewBag.Title = "Tipos de Permisos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -30,7 +30,7 @@
     }
 </style>
 
-<h2>Gestion de Cargos Corporativos</h2>
+<h2>Catalogo de Tipos de Permisos</h2>
 
 @if (TempData["Success"] != null)
 {
@@ -44,7 +44,7 @@
     <div class="col-md-6">
         <p>
             <a href="@Url.Action("Create")" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Crear Nuevo Cargo
+                <i class="fas fa-plus"></i> Crear Tipo de Permiso
             </a>
             <button id="btnMostrarInactivos" class="btn btn-secondary">
                 <i class="fas fa-eye"></i> Mostrar Inactivos
@@ -53,7 +53,7 @@
     </div>
     <div class="col-md-6">
         <div class="input-group">
-            <input type="text" id="busquedaRapida" class="form-control" placeholder="Buscar por nombre de cargo..." />
+            <input type="text" id="busquedaRapida" class="form-control" placeholder="Buscar por nombre de permiso..." />
             <span class="input-group-text bg-primary text-white">
                 <i class="fas fa-search"></i>
             </span>
@@ -65,15 +65,15 @@
     <div class="col-md-6">
         <div class="card text-white bg-primary">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-briefcase"></i> Total Cargos</h5>
-                <p class="card-text display-4" id="totalCargos">0</p>
+                <h5 class="card-title"><i class="fas fa-clipboard-list"></i> Total Tipos</h5>
+                <p class="card-text display-4" id="totalTipos">0</p>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card text-white bg-success">
             <div class="card-body">
-                <h5 class="card-title"><i class="fas fa-toggle-on"></i> Cargos Activos</h5>
+                <h5 class="card-title"><i class="fas fa-toggle-on"></i> Tipos Activos</h5>
                 <p class="card-text display-4" id="totalActivos">0</p>
             </div>
         </div>
@@ -83,7 +83,7 @@
 <div id="tablaContainer">
     <div class="text-center p-5" id="loadingIndicator">
         <div class="spinner-border text-primary" role="status"></div>
-        <p>Cargando cargos...</p>
+        <p>Cargando tipos de permisos...</p>
     </div>
     <div id="tablaContent" style="display: none;"></div>
 </div>
@@ -97,33 +97,33 @@
     <script>
         let filters = { busqueda: '', mostrarInactivos: false };
 
-        $(document).ready(function() {
-            cargarCargos();
+        $(document).ready(function () {
+            cargarCatalogo();
 
-            $('#busquedaRapida').on('input', function() {
+            $('#busquedaRapida').on('input', function () {
                 filters.busqueda = $(this).val();
-                cargarCargos();
+                cargarCatalogo();
             });
 
-            $('#btnMostrarInactivos').click(function() {
+            $('#btnMostrarInactivos').click(function () {
                 filters.mostrarInactivos = !filters.mostrarInactivos;
                 $(this).text(filters.mostrarInactivos ? 'Mostrar Activos' : 'Mostrar Inactivos');
                 $(this).toggleClass('btn-secondary btn-warning');
-                cargarCargos();
+                cargarCatalogo();
             });
         });
 
-        function cargarCargos() {
+        function cargarCatalogo() {
             $('#loadingIndicator').show();
             $('#tablaContent').hide();
 
             $.ajax({
-                url: '@Url.Action("GetAll", "Cargos")',
+                url: '@Url.Action("GetAll", "CatalogoPermisos")',
                 type: 'GET',
                 data: filters,
                 dataType: 'json',
-                success: function(res) {
-                    $('#totalCargos').text(res.estadisticas.Total);
+                success: function (res) {
+                    $('#totalTipos').text(res.estadisticas.Total);
                     $('#totalActivos').text(res.estadisticas.Activos);
                     renderizarTabla(res.data);
                     $('#loadingIndicator').hide();
@@ -134,7 +134,7 @@
 
         function renderizarTabla(data) {
             if (!data || data.length === 0) {
-                $('#tablaContent').html('<div class="alert alert-info text-center">No se encontraron registros de cargos.</div>');
+                $('#tablaContent').html('<div class="alert alert-info text-center">No se encontraron tipos de permisos registrados.</div>');
                 return;
             }
 
@@ -144,30 +144,36 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
-                                <th>Puesto / Cargo</th>
-                                <th>Departamento</th>
+                                <th>Tipo de Permiso</th>
                                 <th>Descripcion</th>
-                                <th>Estado</th>
+                                <th class="text-center">Dias Max.</th>
+                                <th class="text-center">Solicitudes</th>
+                                <th class="text-center">Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
             `;
 
-            $.each(data, function(i, c) {
-                let btnToggle = c.Activo
-                    ? `<button class="btn btn-danger btn-sm" onclick="toggleCargo(${c.CargoID}, '${c.NombreCargo}', true)"><i class="fas fa-trash"></i> Desactivar</button>`
-                    : `<button class="btn btn-success btn-sm" onclick="toggleCargo(${c.CargoID}, '${c.NombreCargo}', false)"><i class="fas fa-undo-alt"></i> Activar</button>`;
+            $.each(data, function (i, p) {
+                let btnToggle = p.Activo
+                    ? `<button class="btn btn-danger btn-sm" onclick="togglePermiso(${p.TipoPermisoID}, '${p.NombrePermiso}', true)"><i class="fas fa-trash"></i> Desactivar</button>`
+                    : `<button class="btn btn-success btn-sm" onclick="togglePermiso(${p.TipoPermisoID}, '${p.NombrePermiso}', false)"><i class="fas fa-undo-alt"></i> Activar</button>`;
+
+                let diasBadge = p.DiasMaximos > 0
+                    ? `<span class="badge bg-info">${p.DiasMaximos} dias</span>`
+                    : `<span class="badge bg-secondary">Sin limite</span>`;
 
                 html += `
                     <tr>
-                        <td class="text-center">${c.CargoID}</td>
-                        <td><strong>${c.NombreCargo}</strong></td>
-                        <td><span class="badge bg-secondary">${c.DepartamentoNombre}</span></td>
-                        <td>${c.Descripcion}</td>
-                        <td class="text-center"><span class="badge ${c.Activo ? 'bg-success' : 'bg-danger'}">${c.Activo ? 'Activo' : 'Inactivo'}</span></td>
+                        <td class="text-center">${p.TipoPermisoID}</td>
+                        <td><strong><i class="fas fa-clipboard text-primary me-1"></i>${p.NombrePermiso}</strong></td>
+                        <td>${p.Descripcion}</td>
+                        <td class="text-center">${diasBadge}</td>
+                        <td class="text-center"><span class="badge bg-secondary">${p.TotalSolicitudes}</span></td>
+                        <td class="text-center"><span class="badge ${p.Activo ? 'bg-success' : 'bg-danger'}">${p.Activo ? 'Activo' : 'Inactivo'}</span></td>
                         <td>
-                            <a href="@Url.Action("Edit")/${c.CargoID}" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i> Editar</a>
+                            <a href="@Url.Action("Edit")/${p.TipoPermisoID}" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i> Editar</a>
                             ${btnToggle}
                         </td>
                     </tr>
@@ -178,10 +184,10 @@
             $('#tablaContent').html(html);
         }
 
-        function toggleCargo(id, nombre, activo) {
+        function togglePermiso(id, nombre, activo) {
             Swal.fire({
-                title: activo ? '¿Desactivar cargo?' : '¿Activar cargo?',
-                text: `El cargo "${nombre}" cambiara de estado operativo.`,
+                title: activo ? '¿Desactivar tipo de permiso?' : '¿Activar tipo de permiso?',
+                text: `El tipo "${nombre}" cambiara de estado.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: activo ? '#d33' : '#28a745',
@@ -190,13 +196,13 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: '@Url.Action("ToggleActivo", "Cargos")',
+                        url: '@Url.Action("ToggleActivo", "CatalogoPermisos")',
                         type: 'POST',
                         data: { id: id },
-                        success: function(res) {
+                        success: function (res) {
                             if (res.success) {
                                 Swal.fire('Actualizado', res.message, 'success');
-                                cargarCargos();
+                                cargarCatalogo();
                             }
                         }
                     });
