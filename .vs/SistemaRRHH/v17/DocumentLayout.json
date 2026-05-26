@@ -7,12 +7,24 @@
       "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\permisos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\permisos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\controllers\\api\\empleadosapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\controllers\\api\\empleadosapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\empleados\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\empleados\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\permisos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\permisos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\empleados\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -25,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\reports\\rptempleados.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
       "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\reports\\rptempleados.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\controllers\\api\\empleadosapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\controllers\\api\\empleadosapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\helpers\\reportesconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,16 +59,8 @@
       "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\reporte\\empleados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|solutionrelative:sistemarrhh\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D77CF78-B78E-4AB3-A096-6674FE0543BA}|SistemaRRHH\\SistemaRRHH.csproj|C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\sistemarrhh\\views\\permisos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -86,59 +86,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmpleadosController.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\EmpleadosController.cs",
-              "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\EmpleadosController.cs",
-              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\EmpleadosController.cs",
-              "RelativeToolTip": "SistemaRRHH\\Controllers\\EmpleadosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYCAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T21:56:36.073Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "rptEmpleados.rpt",
-              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Reports\\rptEmpleados.rpt",
-              "RelativeDocumentMoniker": "SistemaRRHH\\Reports\\rptEmpleados.rpt",
-              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Reports\\rptEmpleados.rpt",
-              "RelativeToolTip": "SistemaRRHH\\Reports\\rptEmpleados.rpt",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIdSURBVDhPpZJNaBNBFMf/M7ub2NhajSDiwS96CbY2BykojaD0oF5s0YPgQYReLHgpeNCLYv0AexNRb1VUAkJcPXgQEUG89BIaxI9gqzGxH6QmXTef3Wx2nJkmNev25g8ebx7z3n/ezBv8F4wx0lhK7j6fYo3lmowMhl35HoRA3XGk/YvYW\u002BsA2vCrUEIwu1hEJltwmeDc8V5Plx4BAaXEY4J7LxLSt4q4BBS6Eiq8oGm3nXHZ1VCkS9pgfxc62/0yT\u002BASaNRLIWE6ieHB3H1EZsMyVhUKTXU37Yo0RZFeVQiuL14D1tnooBtQcEwcSO9d7aoVdefw5yFC2GG\u002BDsa/OTj228LYwmXejYrkzxkUsqZMNG0TfZkexA99lHETUqlYJ0rV5YEPqfKOG7Glo3MGRSTkx2T4JNp2\u002BzGfmMf3JzNAHijHarJIfz\u002BN0wMh2QoduRrVL9x6NqrWzUt3hjfjYMiHV1NVWNHHCJAOoMof3OBOt10T8XD24kOiv0uynFFkp8ZTrPv8NNs3\u002BpXtifawUmWZWbU6q9l16Z\u002B\u002BTXrHOHHzDPP7ND6iNvSHAtjYrkLTNDzqfQleBIU/rDhdeI1Po4l7JpyqDSTSDoKdPmwLqqhaNdh2vbHrxXWhidcZ9mXBj3yJYr3Pwf7tBnL5HLZu2YRA4O/nERzp2yVrXQJiIhWrdsUwy92/lorZyURqLP4p/YZv/eBXLK9ktQL8AbhJ7xVosbKmAAAAAElFTkSuQmCC",
-              "WhenOpened": "2026-05-25T16:13:23.357Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "ReportesConexion.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Helpers\\ReportesConexion.cs",
-              "RelativeDocumentMoniker": "SistemaRRHH\\Helpers\\ReportesConexion.cs",
-              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Helpers\\ReportesConexion.cs",
-              "RelativeToolTip": "SistemaRRHH\\Helpers\\ReportesConexion.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAABkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-24T22:17:15.109Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Index.cshtml",
-              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Empleados\\Index.cshtml",
-              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Index.cshtml",
-              "RelativeToolTip": "SistemaRRHH\\Views\\Empleados\\Index.cshtml",
-              "ViewState": "AgIAABABAAAAAAAAAAAuwB8BAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-13T21:58:16.544Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Create.cshtml",
               "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Empleados\\Create.cshtml",
@@ -150,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Edit.cshtml",
               "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Empleados\\Edit.cshtml",
@@ -162,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Permisos\\Index.cshtml",
               "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Permisos\\Index.cshtml",
@@ -174,19 +126,95 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Web.config",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Web.config",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Web.config",
+              "RelativeToolTip": "SistemaRRHH\\Web.config",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAswHYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-05-25T01:49:53.191Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-24T21:50:20.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "EmpleadosAPIController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\API\\EmpleadosAPIController.cs",
               "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\API\\EmpleadosAPIController.cs",
               "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\API\\EmpleadosAPIController.cs",
               "RelativeToolTip": "SistemaRRHH\\Controllers\\API\\EmpleadosAPIController.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAzwHUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAAwHUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-24T22:15:05.681Z"
+              "WhenOpened": "2026-05-24T22:15:05.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmpleadosController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "RelativeToolTip": "SistemaRRHH\\Controllers\\EmpleadosController.cs",
+              "ViewState": "AgIAABUCAAAAAAAAAAAkwBsCAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T21:56:36.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "RelativeToolTip": "SistemaRRHH\\Views\\Empleados\\Index.cshtml",
+              "ViewState": "AgIAABABAAAAAAAAAAAuwB8BAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-13T21:58:16.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReportesConexion.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Helpers\\ReportesConexion.cs",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Helpers\\ReportesConexion.cs",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Helpers\\ReportesConexion.cs",
+              "RelativeToolTip": "SistemaRRHH\\Helpers\\ReportesConexion.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAABkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T22:17:15.109Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "rptEmpleados.rpt",
+              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Reports\\rptEmpleados.rpt",
+              "RelativeDocumentMoniker": "SistemaRRHH\\Reports\\rptEmpleados.rpt",
+              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Reports\\rptEmpleados.rpt",
+              "RelativeToolTip": "SistemaRRHH\\Reports\\rptEmpleados.rpt",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIdSURBVDhPpZJNaBNBFMf/M7ub2NhajSDiwS96CbY2BykojaD0oF5s0YPgQYReLHgpeNCLYv0AexNRb1VUAkJcPXgQEUG89BIaxI9gqzGxH6QmXTef3Wx2nJkmNev25g8ebx7z3n/ezBv8F4wx0lhK7j6fYo3lmowMhl35HoRA3XGk/YvYW\u002BsA2vCrUEIwu1hEJltwmeDc8V5Plx4BAaXEY4J7LxLSt4q4BBS6Eiq8oGm3nXHZ1VCkS9pgfxc62/0yT\u002BASaNRLIWE6ieHB3H1EZsMyVhUKTXU37Yo0RZFeVQiuL14D1tnooBtQcEwcSO9d7aoVdefw5yFC2GG\u002BDsa/OTj228LYwmXejYrkzxkUsqZMNG0TfZkexA99lHETUqlYJ0rV5YEPqfKOG7Glo3MGRSTkx2T4JNp2\u002BzGfmMf3JzNAHijHarJIfz\u002BN0wMh2QoduRrVL9x6NqrWzUt3hjfjYMiHV1NVWNHHCJAOoMof3OBOt10T8XD24kOiv0uynFFkp8ZTrPv8NNs3\u002BpXtifawUmWZWbU6q9l16Z\u002B\u002BTXrHOHHzDPP7ND6iNvSHAtjYrkLTNDzqfQleBIU/rDhdeI1Po4l7JpyqDSTSDoKdPmwLqqhaNdh2vbHrxXWhidcZ9mXBj3yJYr3Pwf7tBnL5HLZu2YRA4O/nERzp2yVrXQJiIhWrdsUwy92/lorZyURqLP4p/YZv/eBXLK9ktQL8AbhJ7xVosbKmAAAAAElFTkSuQmCC",
+              "WhenOpened": "2026-05-25T16:13:23.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Global.asax.cs",
               "RelativeDocumentMoniker": "SistemaRRHH\\Global.asax.cs",
@@ -198,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "PermisosController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\PermisosController.cs",
               "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\PermisosController.cs",
@@ -210,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "ReporteController.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Controllers\\ReporteController.cs",
               "RelativeDocumentMoniker": "SistemaRRHH\\Controllers\\ReporteController.cs",
@@ -222,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "packages.config",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\packages.config",
               "RelativeDocumentMoniker": "SistemaRRHH\\packages.config",
@@ -234,20 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Web.config",
-              "RelativeDocumentMoniker": "SistemaRRHH\\Web.config",
-              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Web.config",
-              "RelativeToolTip": "SistemaRRHH\\Web.config",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAswHYAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-05-25T01:49:53.191Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Empleados.cshtml",
               "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Reporte\\Empleados.cshtml",
               "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Reporte\\Empleados.cshtml",
@@ -256,18 +271,6 @@
               "ViewState": "AgIAAFAAAAAAAAAAAAAswE8AAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-25T01:54:22.964Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SistemaRRHH\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\HP\\Documents\\Visual Studio 2022\\Projects\\SistemaRRHH\\SistemaRRHH\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SistemaRRHH\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-24T21:50:20.708Z"
             },
             {
               "$type": "Document",

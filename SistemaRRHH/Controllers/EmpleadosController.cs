@@ -528,9 +528,8 @@ namespace SistemaRRHH.Controllers
 				.Select(e => new
 				{
 					Departamento = e.Cargos.Departamentos.Nombre ?? "Sin Departamento",
-					e.FechaSalida,
 					SalarioActivo = e.Salarios.Where(s => s.Activo == true).Select(s => s.Monto).FirstOrDefault(),
-					FechaIngreso = e.FechaIngreso.HasValue ? e.FechaIngreso.Value.Year : 0
+					FechaIngreso = e.FechaIngreso
 				})
 				.ToList();
 
@@ -544,15 +543,28 @@ namespace SistemaRRHH.Controllers
 									  .Select(x => x.SalarioActivo.Value)
 									  .DefaultIfEmpty(0)
 									  .Average(),
-					AntiguedadPromedio = g.Where(x => x.FechaIngreso > 0)
-										 .Select(x => x.FechaIngreso)
-										 .DefaultIfEmpty(0)
-										 .Average()
+					// Calcular antigüedad promedio en años
+					AntiguedadPromedio = g.Where(x => x.FechaIngreso.HasValue)
+										 .Average(x => CalcularAntiguedadEnAños(x.FechaIngreso.Value))
 				})
 				.OrderByDescending(x => x.Cantidad)
 				.ToList();
 
 			return Json(estadisticas, JsonRequestBehavior.AllowGet);
+		}
+
+		/// <summary>
+		/// Calcula la antigüedad en años desde la fecha de ingreso hasta hoy
+		/// </summary>
+		/// <param name="fechaIngreso">Fecha de ingreso del empleado</param>
+		/// <returns>Número de años trabajados</returns>
+		private int CalcularAntiguedadEnAños(DateTime fechaIngreso)
+		{
+			var hoy = DateTime.Now;
+			var años = hoy.Year - fechaIngreso.Year;
+			// Si aún no ha pasado el aniversario este año, restar un año
+			if (fechaIngreso.Date > hoy.AddYears(-años)) años--;
+			return años;
 		}
 
 		/// <summary>
