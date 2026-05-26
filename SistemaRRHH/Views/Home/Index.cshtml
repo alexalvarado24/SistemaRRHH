@@ -1,33 +1,81 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Inicio - Sistema de RRHH";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<style>
+    .quick-link-card {
+        border-top: 4px solid #007bff;
+        transition: transform 0.2s;
+        border-radius: 8px;
+    }
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+        }
+</style>
+
+<main class="container mt-4">
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <div class="p-5 bg-dark text-white rounded-3 shadow-sm">
+                <h1 class="display-5 fw-bold">Bienvenido al Sistema de Gestión de RRHH</h1>
+                <p class="col-md-8 fs-4">Plataforma centralizada para la administración de expedientes de empleados, solicitudes de permisos, asignación de horarios y control de planillas.</p>
+                <p class="text-muted mb-0"><i class="far fa-calendar-alt"></i> Fecha de acceso: @DateTime.Now.ToString("dd/MM/yyyy")</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mb-4 text-secondary"><i class="fas fa-th-large"></i> Accesos Directos a Módulos</h3>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm quick-link-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-primary"><i class="fa fa-id-badge"></i> Gestión de Empleados</h5>
+                    <p class="card-text text-muted flex-grow-1">Permite registrar nuevos colaboradores, actualizar expedientes, asignar cargos y visualizar salarios base e historiales.</p>
+                    <a href="@Url.Action("Index", "Empleados")" class="btn btn-outline-primary w-100 mt-3">Ir a Empleados &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #28a745;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-success"><i class="fa fa-calendar-check"></i> Solicitudes de Permiso</h5>
+                    <p class="card-text text-muted flex-grow-1">Administración de licencias por enfermedad, vacaciones, maternidad y asuntos personales. Aprobación y rechazo en tiempo real.</p>
+                    <a href="@Url.Action("Index", "Permisos")" class="btn btn-outline-success w-100 mt-3">Ir a Permisos &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #17a2b8;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-info"><i class="fa fa-calculator"></i> Control de Planillas</h5>
+                    <p class="card-text text-muted flex-grow-1">Módulo para el cálculo automático de salarios netos aplicando deducciones legales de ley (AFP, ISSS, Renta) e ingresos complementarios.</p>
+                    <a href="@Url.Action("Index", "Planilla")" class="btn btn-outline-info w-100 mt-3">Ir a Planillas &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #ffc107;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-warning"><i class="fa fa-clock"></i> Asignación de Horarios</h5>
+                    <p class="card-text text-muted flex-grow-1">Configuración y mantenimiento de turnos de trabajo, horas de entrada y salidas operativas para el personal de la empresa.</p>
+                    <a href="@Url.Action("Index", "Horarios")" class="btn btn-outline-warning w-100 mt-3">Ir a Horarios &raquo;</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm quick-link-card" style="border-top-color: #6c757d;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold text-secondary"><i class="fa fa-briefcase"></i> Estructura de Cargos</h5>
+                    <p class="card-text text-muted flex-grow-1">Catálogo institucional de puestos, plazas funcionales disponibles y su correspondiente distribución por departamentos.</p>
+                    <a href="@Url.Action("Index", "Cargos")" class="btn btn-outline-secondary w-100 mt-3">Ir a Cargos &raquo;</a>
+                </div>
+            </div>
+        </div>
     </div>
 </main>

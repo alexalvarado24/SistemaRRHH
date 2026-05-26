@@ -1,0 +1,311 @@
+﻿@{
+    ViewBag.Title = "Control de Planillas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .display-4 {
+        font-size: 1.8rem;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .card {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(23, 162, 184, 0.1);
+    }
+</style>
+
+<h2>Control y Procesamiento de Planillas</h2>
+
+<div class="card mb-4 mt-3">
+    <div class="card-body bg-light">
+        <div class="row align-items-end">
+            <div class="col-md-3">
+                <label class="form-label fw-bold"><i class="fas fa-calendar-alt"></i> Mes Salarial</label>
+                <select id="selectMes" class="form-control">
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold"><i class="fas fa-clock"></i> Año Laboral</label>
+                <select id="selectAnio" class="form-control">
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button id="btnConsultarPlanilla" class="btn btn-info w-100 text-white fw-bold">
+                    <i class="fas fa-search"></i> Consultar Periodo
+                </button>
+            </div>
+            <div class="col-md-3">
+                <button id="btnGenerarCálculo" class="btn btn-success w-100 fw-bold">
+                    <i class="fas fa-calculator"></i> Procesar Mes Completo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-dark">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-wallet"></i> Total Salarios Brutos</h5>
+                <p class="card-text display-4 fw-bold" id="txtTotalBruto">$0.00</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-percentage"></i> Total Retenciones de Ley</h5>
+                <p class="card-text display-4 fw-bold" id="txtTotalDeducciones">$0.00</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-money-check-alt"></i> Neto Líquido a Pagar</h5>
+                <p class="card-text display-4 fw-bold" id="txtTotalNeto">$0.00</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contenedorPlanilla">
+    <div class="text-center p-5" id="cargandoPlanilla">
+        <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Procesando datos...</span>
+        </div>
+        <p class="mt-2">Extrayendo registros de nómina...</p>
+    </div>
+    <div id="tablaPlanillaContenido" class="table-responsive" style="display: none;">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center">ID Registro</th>
+                    <th>Colaborador</th>
+                    <th class="text-end">Sueldo Base</th>
+                    <th class="text-end">AFP (7.25%)</th>
+                    <th class="text-end">ISSS (3.0%)</th>
+                    <th class="text-end">Renta</th>
+                    <th class="text-end">Líquido a Recibir</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Operaciones de Pago</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyPlanilla">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Inicializar selectores al mes y año corrientes
+            var fechaHoy = new Date();
+            $("#selectMes").val(fechaHoy.getMonth() + 1);
+            $("#selectAnio").val(fechaHoy.getFullYear());
+
+            consultarDatosPlanilla();
+
+            $("#btnConsultarPlanilla").click(function () {
+                consultarDatosPlanilla();
+            });
+
+            $("#btnGenerarCálculo").click(function () {
+                var mesStr = $("#selectMes option:selected").text();
+                var anioVal = $("#selectAnio").val();
+
+                Swal.fire({
+                    title: '¿Ejecutar cierre y cálculo de nómina?',
+                    text: `Se procesarán de manera automática las deducciones y montos netos para todos los empleados activos correspondientes al mes de ${mesStr} del año ${anioVal}.`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#28a745',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Sí, generar cierre mensual',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        ejecutarGeneracionGlobal();
+                    }
+                });
+            });
+        });
+
+        function consultarDatosPlanilla() {
+            $("#cargandoPlanilla").show();
+            $("#tablaPlanillaContenido").hide();
+
+            $.ajax({
+                url: '@Url.Action("GetAll", "Planilla")',
+                type: 'GET',
+                data: {
+                    mes: $("#selectMes").val(),
+                    anio: $("#selectAnio").val()
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        actualizarKpisFinancieros(response.estadisticas);
+                        dibujarTablaPlanilla(response.data);
+                    } else {
+                        Swal.fire('Error de Lectura', response.message, 'error');
+                    }
+                    $("#cargandoPlanilla").hide();
+                },
+                error: function () {
+                    $("#contenedorPlanilla").html('<div class="alert alert-danger text-center">Fallo técnico crítico al recuperar la nómina del periodo.</div>');
+                    $("#cargandoPlanilla").hide();
+                }
+            });
+        }
+
+        function actualizarKpisFinancieros(kpi) {
+            $("#txtTotalBruto").text('$' + kpi.TotalBruto.toLocaleString('es-SV', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+            $("#txtTotalDeducciones").text('$' + kpi.TotalDeducciones.toLocaleString('es-SV', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+            $("#txtTotalNeto").text('$' + kpi.TotalNeto.toLocaleString('es-SV', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        }
+
+        function dibujarTablaPlanilla(lista) {
+            var tbody = $("#tbodyPlanilla");
+            tbody.empty();
+
+            if (!lista || lista.length === 0) {
+                $("#tablaPlanillaContenido").hide();
+                tbody.html('<tr><td colspan="9" class="text-center text-muted">No se registran transacciones de planillas cerradas para este mes.</td></tr>');
+                $("#tablaPlanillaContenido").show();
+                return;
+            }
+
+            $.each(lista, function (index, item) {
+                var liquido = item.MontoTotal - (item.AFP + item.ISSS + item.Renta + item.OtrasDeducciones);
+
+                var claseBadge = item.Estado === 'PAGADA' ? 'bg-success' : 'bg-warning text-dark';
+
+                var controlAccion = "";
+                if (item.Estado === 'PENDIENTE') {
+                    controlAccion = `<button class="btn btn-sm btn-success fw-bold w-100" onclick="liquidarPagoIndividual(${item.PlanillaID}, '${item.NombreCompleto}')">
+                                        <i class="fas fa-hand-holding-usd"></i> Aplicar Pago
+                                     </button>`;
+                } else {
+                    controlAccion = `<button class="btn btn-sm btn-outline-secondary w-100" disabled>
+                                        <i class="fas fa-check-double"></i> Transferido
+                                     </button>`;
+                }
+
+                var fila = `
+                    <tr>
+                        <td class="text-center fw-bold">${item.PlanillaID}</td>
+                        <td><strong>${item.NombreCompleto}</strong></td>
+                        <td class="text-end">$${item.MontoTotal.toFixed(2)}</td>
+                        <td class="text-end text-danger">$${item.AFP.toFixed(2)}</td>
+                        <td class="text-end text-danger">$${item.ISSS.toFixed(2)}</td>
+                        <td class="text-end text-danger">$${item.Renta.toFixed(2)}</td>
+                        <td class="text-end fw-bold text-success">$${liquido.toFixed(2)}</td>
+                        <td class="text-center"><span class="badge ${claseBadge} p-2">${item.Estado}</span></td>
+                        <td>${controlAccion}</td>
+                    </tr>
+                `;
+                tbody.append(fila);
+            });
+
+            $("#tablaPlanillaContenido").show();
+        }
+
+        function ejecutarGeneracionGlobal() {
+            $.ajax({
+                url: '@Url.Action("GenerarPlanilla", "Planilla")',
+                type: 'POST',
+                data: {
+                    mes: $("#selectMes").val(),
+                    anio: $("#selectAnio").val()
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: 'Cierre Exitoso',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonColor: '#17a2b8'
+                        });
+                        consultarDatosPlanilla();
+                    } else {
+                        Swal.fire('Validación del Sistema', response.message, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error', 'Error en el servidor al compilar los salarios de la nómina.', 'error');
+                }
+            });
+        }
+
+        function liquidarPagoIndividual(id, nombre) {
+            Swal.fire({
+                title: '¿Confirmar dispersión de fondos?',
+                text: `El registro del empleado ${nombre} cambiará su estado a PAGADA, validando la emisión bancaria del salario líquido.`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#28a745',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Efectuar Pago',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Url.Action("CambiarEstadoPlanilla", "Planilla")',
+                        type: 'POST',
+                        data: { id: id, nuevoEstado: 'PAGADA' },
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.success) {
+                                Swal.fire('Operación Ejecutada', response.message, 'success');
+                                consultarDatosPlanilla();
+                            } else {
+                                Swal.fire('Error', response.message, 'error');
+                            }
+                        },
+                        error: function () {
+                            Swal.fire('Error', 'Fallo de conexión al modificar el estado del desembolso.', 'error');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}

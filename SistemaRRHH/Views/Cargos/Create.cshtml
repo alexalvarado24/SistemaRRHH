@@ -1,0 +1,64 @@
+﻿@model SistemaRRHH.Models.Cargos
+
+@{
+    ViewBag.Title = "Estructurar Nuevo Cargo";
+}
+
+<h2 class="mb-4"><i class="fas fa-briefcase text-success"></i> Estructurar Nuevo Cargo Operativo</h2>
+
+@using (Html.BeginForm("Create", "Cargos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0"><i class="fas fa-plus-square"></i> Alta de Puesto</h5>
+        </div>
+        <div class="card-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(model => model.NombreCargo, "Nombre de la Plaza / Puesto *", new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(model => model.NombreCargo, new { @class = "form-control", placeholder = "Ej. Analista de Créditos Senior", required = "required" })
+                    @Html.ValidationMessageFor(model => model.NombreCargo, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(model => model.DepartamentoID, "Departamento Institucional *", new { @class = "form-label fw-bold" })
+                    @Html.DropDownList("DepartamentoID", null, "--- Seleccione un Departamento ---", new { @class = "form-select", required = "required" })
+                    @Html.ValidationMessageFor(model => model.DepartamentoID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Descripcion, "Descripción o Funciones del Cargo", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = "3", placeholder = "Escriba brevemente las responsabilidades principales del puesto..." })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+
+            <hr />
+
+            <div class="d-flex justify-content-between">
+                <a href="@Url.Action("Index")" class="btn btn-secondary px-4">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+                <button type="submit" class="btn btn-success px-4">
+                    <i class="fas fa-save"></i> Registrar Cargo
+                </button>
+            </div>
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
